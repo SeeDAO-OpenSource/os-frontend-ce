@@ -1,0 +1,143 @@
+{
+    "data": [
+        {
+            "title": "Error Page",
+            "design": "icon",
+            "type": "sub",
+            "active": false,
+            "children": [
+                {
+                    "path": "/error-400",
+                    "title": "Error 400",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/error-401",
+                    "title": "Error 401",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/error-403",
+                    "title": "Error 403",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/error-404",
+                    "title": "Error 404",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/error-500",
+                    "title": "Error 500",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/error-503",
+                    "title": "Error 503",
+                    "type": "extTabLink"
+                  }
+            ]
+        },
+        {
+            "title": "Authentication",
+            "design": "doted",
+            "type": "sub",
+            "active": false,
+            "children": [
+                {
+                    "path": "/auth/login",
+                    "title": "Login Simple",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/authentication/login/one",
+                    "title": "Login with Image",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/authentication/login/two",
+                    "title": "Login with Image 2",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/authentication/login/validate",
+                    "title": "Login with validation",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/auth/register",
+                    "title": "Register Simple",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/authentication/register/image",
+                    "title": "Register with Image",
+                    "type": "extTabLink"
+                  },
+                  {
+                    "path": "/authentication/register/image2",
+                    "title": "Register with image 2",
+                    "type": "extTabLink"
+                  }
+            ]
+        },
+        {
+            "title": "Usefull Pages",
+            "design": "dashed-links",
+            "type": "sub",
+            "active": false,
+            "children": [
+                {
+                    "path": "/pages/search",
+                    "title": "Search Website",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/authentication/unlockuser",
+                    "title": "Unlock User",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/authentication/forgetpassword",
+                    "title": "Forget Password",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/authentication/resetpassword",
+                    "title": "Reset Password",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/maintenance",
+                    "title": "Maintenance",
+                    "type": "extTabLink"
+                }
+            ]
+        },
+        {
+            "title": "Coming Soon",
+            "type": "sub",
+            "active": false,
+            "children": [
+                {
+                    "path": "/comingsoon/comingsoon-simple",
+                    "title": "Coming Soon",
+                    "icon": "file",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/comingsoon/comingsoon-image",
+                    "title": "Coming Image",
+                    "icon": "file",
+                    "type": "extTabLink"
+                },
+                {
+                    "path": "/comingsoon/comingsoon-video",
+                    "title": "Coming Video",
+                    "icon": "image",
+                    "type": "extTabLink"
+                }
+            ]
+        }
+    ]
+}

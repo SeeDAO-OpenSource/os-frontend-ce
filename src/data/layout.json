@@ -1,0 +1,14 @@
+{ 
+  "settings":
+    {
+      "layout_type":"ltr",
+      "layout":"Seoul",
+      "sidebar_setting":"default-sidebar"
+    },
+  "color":
+    {
+          "layout_version":"light",
+          "primary_color":"#7366ff",
+          "secondary_color":"#f73164"
+    }
+  }

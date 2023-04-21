@@ -1,0 +1,212 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "name": "Elana Jecno",
+      "thumb": "user/10.jpg",
+      "status": "Out is my favorite",
+      "lastSeenDate":"Active",
+      "active": "active"
+    },
+    {
+      "id": 1,
+      "name": "治理小组",
+      "thumb": "user/10.jpg",
+      "status": "白鱼, 黄鱼, 红鱼",
+      "lastSeenDate":"Arweave Hash：5CHKMfkmGnWrbfvVevCRz6RwY_M_yspZzt_8PvS8TRs",
+      "active": "active"
+    },
+    {
+      "id": 2,
+      "name": "品牌小组",
+      "thumb": "user/3.png",
+      "status": "唐晗, John, Andy",
+      "lastSeenDate":"Last seen today 13:24",
+      "active": "active"
+    },
+    {
+      "id": 3,
+      "name": "技术小组",
+      "thumb": "user/4.jpg",
+      "status": "Ricky, Ricky, Ricky",
+      "lastSeenDate":"Last seen today 17:42",
+      "active": "active"
+    },
+    {
+      "id": 4,
+      "name": "城市联络人",
+      "thumb": "user/5.jpg",
+      "status": "Ricky, Ricky, Ricky.",
+      "lastSeenDate":"Last seen today 18:00",
+      "active": "active"
+    },
+    {
+      "id": 5,
+      "name": "项目事项",
+      "thumb": "user/6.jpg",
+      "status": "Ricky, Ricky, Ricky.",
+      "lastSeenDate":"Last seen today 22:24",
+      "active": "active"
+    },
+    {
+      "id": 6,
+      "name": "公会事项",
+      "thumb": "user/7.jpg",
+      "status": "Change for anyone.",
+      "lastSeenDate":"Last seen today 00:24",
+      "active": "active"
+    },
+    {
+      "id": 7,
+      "name": "项目相关",
+      "thumb": "user/8.jpg",
+      "status": "first bun like a sun.",
+      "lastSeenDate":"Last seen yesterday 10:50",
+      "active": "deactive"
+    },
+    {
+      "id": 8,
+      "name": "Kori Thomas",
+      "thumb": "user/9.jpg",
+      "status": "Change for anyone.",
+      "lastSeenDate":"Last seen yesterday 06:47",
+      "active": "deactive"
+    },
+    {
+      "id": 9,
+      "name": "Erica Hughes",
+      "thumb": "user/10.jpg",
+      "status": "Change for anyone.",
+      "lastSeenDate":"Last seen yesterday 20:07",
+      "active": "deactive"
+    },
+    {
+      "id": 10,
+      "name": "Porter Ginger",
+      "thumb": "user/11.png",
+      "status": "Change for anyone.",
+      "lastSeenDate":"Last seen yesterday 14:14",
+      "active": "deactive"
+    }
+  ],
+  "chat": [
+    {
+      "id": 1,
+      "users": [
+        0,
+        1
+      ],
+      "lastMessageTime":"Last seen yesterday 05:14",
+      "messages": [
+        {
+          "sender": 0,
+          "time": "10:12 am",
+          "text": "Are we meeting today? Project has been already finished and I have results to show you."
+        },
+        {
+          "sender": 1,
+          "time": "10:14 am",
+          "text": "Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so?."
+        },
+        {
+          "sender": 1,
+          "time": "10:14 am",
+          "text": "Well I am not sure. The rest of the team."
+        },
+        {
+          "sender": 0,
+          "time": "10:20 am",
+          "text": "Actually everything was fine. I'm very excited to show this to our team."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "users": [
+        0,
+        4
+      ],
+      "lastMessageTime":"Last seen yesterday 14:14",
+      "messages": [
+        {
+          "sender": 0,
+          "time": "09:25",
+          "text": "Hello. How are you today?"
+        },
+        {
+          "sender": 4,
+          "time": "09:29",
+          "text": "Hey! I'm fine. Thanks for asking!"
+        },
+        {
+          "sender": 4,
+          "time": "09:36",
+          "text": "Sweet! So, what do you wanna do today?"
+        },
+        {
+          "sender": 0,
+          "time": "10:12",
+          "text": "Nah, I dunno. Play soccer.. or learn more coding perhaps?"
+        },
+        {
+          "sender": 4,
+          "time": "10:30",
+          "text": "I am very busy at the moment."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "users": [
+        0,
+        4
+      ],
+      "lastMessageTime":"Last seen yesterday 11:14",
+      "messages": [
+        {
+          "sender": 0,
+          "time": "09:25",
+          "text": "Hello. How are you today?"
+        },
+        {
+          "sender": 4,
+          "time": "09:29",
+          "text": "Hey! I'm fine. Thanks for asking!"
+        },
+        {
+          "sender": 4,
+          "time": "09:36",
+          "text": "Sweet! So, what do you wanna do today?"
+        },
+        {
+          "sender": 0,
+          "time": "10:12",
+          "text": "Nah, I dunno. Play soccer.. or learn more coding perhaps?"
+        },
+        {
+          "sender": 4,
+          "time": "10:30",
+          "text": "I am very busy at the moment."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "users": [],
+      "lastMessageTime":"",
+      "messages": []
+    },
+    {
+      "id": 5,
+      "users": [],
+      "lastMessageTime":"",
+      "messages": []
+    },
+    {
+      "id": 6,
+      "users": [],
+      "lastMessageTime":"",
+      "messages": []
+    }
+  ]
+}

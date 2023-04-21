@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Weekly Bigbazar Shopping",
+      "delete": false,
+      "status": "complete"
+    },
+    {
+      "id": 2,
+      "title": "Go Outside Picnic on Sunday",
+      "delete": false,
+      "status": "incomplete"
+    },
+    {
+      "id": 3,
+      "title": "Write a blog post",
+      "delete": false,
+      "status": "complete"
+    },
+    {
+      "id": 4,
+      "title": "Do the chicken dance",
+      "delete": false,
+      "status": "incomplete"
+    },
+    {
+      "id": 5,
+      "title": "Pay the electricity bills",
+      "delete": false,
+      "status": "Complete"
+    },
+    {
+      "id": 6,
+      "title": "Make dinner reservation",
+      "delete": false,
+      "status": "incomplete"
+    },
+    {
+      "id": 7,
+      "title": "Meeting with photographer",
+      "delete": false,
+      "status": "incomplete"
+    },
+    {
+      "id": 8,
+      "title": "Birthday wish to best friend",
+      "delete": false,
+      "status": "incomplete"
+    }
+  ]
+}

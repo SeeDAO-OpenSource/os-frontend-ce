@@ -1,0 +1,184 @@
+
+/**=====================
+    vue plugins CSS Start
+==========================**/
+.popover , .tooltip{
+  z-index: 7;
+}
+// datepicker
+.vfc-navigation-buttons, .vfc-separately-navigation-buttons {
+    div {
+        .vfc-arrow-right, .vfc-arrow-left {
+            width: 8px;
+            height: 8px;
+        }
+    }
+}
+.vdp-datepicker__calendar {
+  border: none !important;
+  box-shadow: 0 0 37px rgba(8,21,66,0.05) !important;
+    header {
+      .day__month_btn {
+        font-weight: 500;
+        font-size: 18px;
+      }
+    }
+    .cell {
+      font-family: $font-roboto, $font-serif;
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.22px;
+      color: $font-gray-color;
+      border-radius: 100%;
+      &.selected {
+        background: var(--theme-deafult) !important;
+        color: $white;
+      }
+      &.today {
+          border: 1px solid var(--theme-secondary);
+      }
+     &:not(.blank):not(.disabled).day:hover, &:not(.blank):not(.disabled).month:hover, &:not(.blank):not(.disabled).year:hover {
+        border: 1px solid var(--theme-secondary) !important;
+     }
+    }
+    .day-header {
+      font-family: $font-rubik, $font-serif;
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  .vdp-datepicker__calendar  {
+    .cell {
+      &.day-header {
+        font-size: 80%;
+      }
+    }
+  }
+
+  // select 2 
+  .multiselect__tag {
+    background-color: var(--theme-deafult);
+  }
+  .multiselect__tag-icon {
+    font-weight: 500;
+    &:after {
+      color: $white;
+    }
+  }
+  .multiselect__option {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  // toaster css
+  .toasted {
+    &.outline {
+      &.default {
+        border:  1px solid var(--theme-deafult);
+        color: var(--theme-deafult);
+      }
+      &.success {
+        border:  1px solid $success-color;
+        color: $success-color;
+      }
+      &.info {
+        border:  1px solid $info-color;
+        color: $info-color;
+      }
+      &.danger {
+        border:  1px solid $danger-color;
+        color: $danger-color;
+      }
+    }
+  }
+
+  // rating css
+  .rating-container {
+    position: relative;
+    .rating-show {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+  .vue-rate-it-rating-text, .vue-star-rating-rating-text {
+    margin-top: 0 !important;
+  }
+
+  // gallery css
+  .blueimp-gallery {
+    >.slides {
+      >.slide {
+        >.slide-content {
+          border: none !important;
+        }
+      }
+    }
+  }
+
+  // image cropper css
+  #viewmode {
+    display: block;
+  }
+
+  
+
+  // responsive css
+  @media screen and (max-width: 1366px) {
+    // kanban board
+    .drag-list {
+      margin: -10px;
+      display: block;
+    }
+    .drag-column {
+      margin: 10px;
+      display: inline-block;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .rate-svg {
+      svg {
+        width: 14px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    // calendar page
+    .cv-header {
+      text-align: center;
+      .periodLabel {
+        justify-content: center;
+      }
+    }
+    // datepicker 
+    .vdp-datepicker__calendar {
+      width: 250px !important;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .rating-container {
+      .rating-show {
+        position: relative;
+        margin-top: 15px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    // kanban board
+    .drag-item {
+      .kanban-box {
+        padding: 15px;
+      }
+    }
+  }
+/**=====================
+    vue plugins CSS end
+==========================**/

@@ -1,0 +1,250 @@
+/**=====================
+    25. Authentication CSS Start
+==========================**/
+
+.login-card {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background: url('../images/login/login_bg.jpg');
+  background-position: center;
+  padding: 30px 0;
+
+  .logo {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .btn-showcase {
+    .btn {
+      line-height: 1;
+      padding: 10px 15px;
+      margin: 0;
+
+      &+.btn {
+        margin-left: 5px;
+      }
+
+      i {
+        height: 16px;
+        vertical-align: bottom;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .login-main {
+    width: 450px;
+    padding: 0px;
+    border-radius: 10px;
+    box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+    margin: 0 auto;
+    background-color: $white;
+
+    .card{
+      border-radius: 5px;
+    }
+
+    &.login-form-card {
+      padding: 40px;
+    }
+
+    .theme-form {
+      h4 {
+        margin-bottom: 5px;
+      }
+
+      label {
+        font-size: 15px;
+        letter-spacing: 0.4px;
+      }
+
+      .checkbox label::before {
+        background-color: $card-body-color;
+        border: 1px solid #dfdfdf;
+      }
+
+      .or {
+        position: relative;
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 65%;
+          height: 2px;
+          background-color: #f3f3ff;
+          top: 9px;
+          z-index: 0;
+          right: 0;
+        }
+      }
+
+      input {
+        background-color: #f3f3ff;
+        transition: all 0.3s ease;
+
+        &::-webkit-input-placeholder {
+          color: $light-text;
+        }
+
+        &:hover,
+        &:focus {
+          border: 1px solid lighten($semi-dark, 35%);
+          box-shadow: none !important;
+          transition: all 0.3s ease;
+        }
+      }
+
+      p {
+        margin-bottom: 25px;
+        font-size: 14px;
+        color: $dark-gray;
+      }
+
+      .form-group {
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .link {
+        position: absolute;
+        top: 10px;
+        right: 0;
+      }
+    }
+
+    .tabs{
+      margin: 0;
+      .col-auto{
+        height: auto;
+        position: absolute;
+        left: -70px;
+        padding: 0;
+        .nav{
+          .nav-item{
+            .nav-link{
+              border-top-right-radius: 0;
+              padding: 10px 25px;
+              position: relative;
+              background-color: white;
+              &.active{
+                background-color: white;
+                border-right: 2px solid var(--theme-deafult);
+                border-bottom: none;
+                border-radius: 0;
+              }
+              &:before{
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(115, 102, 255, 0.1);
+                border-radius: 5px;
+                transform: scale(0);
+                transition: all 0.3s ease;
+              }
+              &:after{
+                content: "";
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                top: 12px;
+                border-width: 5px 0 5px 5px;
+                border-left-color: #e8e6ff;
+                opacity: 0;
+                transform: scale(0);
+                color: #fff; 
+                left: 14px;
+                z-index: 2;
+                transition: all 0.3s ease;
+              }
+              &:hover{
+                &:after{
+                  opacity: 1;
+                  transform: scale(1);
+                  transition: all .3s ease;
+                }
+                span{
+                  opacity: 1;
+                  right: 56px;
+                  transform: scale(1);
+                  transition: all .3s ease;
+                }
+              }
+              img{
+                width: 20px;
+                height: 20px;
+              }
+              span{
+                position: absolute;
+                right: -60px;
+                width: max-content;
+                text-align: right;
+                padding: 7px 10px;
+                display: block;
+                top: 0;
+                border-radius: 5px;
+                transform: scale(0);
+                transition: all 0.3s ease;
+                opacity: 0;
+                color: var(--theme-deafult);
+                background-color: #e8e6ff;
+                box-shadow: 0 0 37px rgba(8, 21, 66, 0.1);
+              }
+            }
+          }
+        }
+      }
+      .tab-content{
+        padding: 40px;
+      }
+    }
+  }
+}
+
+.show-hide {
+  position: absolute;
+  top: 52px;
+  right: 20px;
+  transform: translateY(-50%);
+
+  span {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--theme-deafult);
+
+    &.show {
+      &:before {
+        content: "show";
+      }
+    }
+
+    &:before {
+      content: "hide";
+    }
+  }
+}
+
+.needs-validation {
+  .invalid-feedback {
+    color: $dark-gray;
+  }
+
+  .show-hide {
+    right: 30px;
+  }
+
+  .invalid-tooltip {
+    top: 0px;
+    right: 10px;
+  }
+}
+
+/**=====================
+    25. Authentication CSS Ends
+==========================**/

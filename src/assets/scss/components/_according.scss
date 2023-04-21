@@ -1,0 +1,83 @@
+/**=====================
+    22. According CSS start
+==========================**/
+.default-according{
+    .card{
+        margin-bottom: 0;
+        &+.card{
+            margin-top: $according-card-top-margin;
+        }
+        .btn{
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .btn{
+            &:focus,&:hover{
+                text-decoration: none;
+            }
+        }
+        .card-header{
+            position: relative;
+            padding: $according-card-header-padding;
+            i{
+                position: absolute;
+                left: 18px;
+                font-size: 16px;
+                top: 26px;
+            }
+            h5{
+                .btn-secondary {
+                    background-color: $transparent-color !important;
+                    border-color: $transparent-color !important;
+                }
+            }
+        }
+    }
+    .btn-link {
+        color: $theme-body-font-color;
+    }
+    .show {
+        > .btn-secondary {
+            &.dropdown-toggle {
+                color: $theme-body-font-color;
+            }
+        }
+    }
+}
+.faq-accordion {
+    .card {
+        .card-header {
+            i {
+                top: 18px;
+            }
+        }
+    }
+}
+.default-according.style-1{
+    button{
+        width: 100%;
+        text-align: left;
+        &:before{
+            right: 20px;
+            position: absolute;
+            transition: 0.4s;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &[aria-expanded="true"]{
+            &:before{
+                content: $according-open-icon;
+                font-family: $according-card-header-icon;
+            }
+        }
+        &[aria-expanded="false"]{
+            &:before{
+                content: $according-close-icon;
+                font-family: $according-card-header-icon;
+            }
+        }
+    }
+}
+/**=====================
+     22. According CSS Ends
+==========================**/

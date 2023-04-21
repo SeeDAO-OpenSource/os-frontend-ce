@@ -1,0 +1,39 @@
+// sweetalert 2 page css
+.swal2-popup {
+    .swal2-styled {
+        padding: 7px 28px;
+        &.swal2-confirm {
+            background-color: var(--theme-deafult) !important;
+            font-size: 14px;
+        }
+        &.swal2-cancel {
+            background-color: $danger-color !important;
+        }
+    }
+}
+// map css
+.vue2leaflet-map{
+    margin:0 auto;
+    z-index: 1;
+}
+// tour
+.v-tour {
+    .v-step__buttons {
+        button {
+            border: 1px solid $light-semi-gray;
+            background: $white;
+            color: $theme-body-font-color;
+            + button {
+                margin-left: 5px;
+            }
+        }
+    }
+}
+// range slider 
+.vue-slide-bar-process {
+    background-color: var(--theme-deafult) !important;
+}
+.vue-slide-bar-tooltip {
+    background-color: var(--theme-deafult) !important;
+    border: 1px solid var(--theme-deafult) !important;
+}
