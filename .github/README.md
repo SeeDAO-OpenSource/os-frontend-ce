@@ -1,4 +1,5 @@
 <p align="center">
+  <h1>⚠️ 请注意！本分支为 Vue2 分支，基本上已经归档不在开发，请勿在此分支开发</h1>
   <a href="https://seedao.xyz">
   
   <picture>
