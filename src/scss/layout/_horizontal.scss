@@ -1,0 +1,139 @@
+.horizontaTopbar {
+  .v-toolbar__content {
+    max-width: 1270px;
+    margin: 0 auto;
+  }
+}
+.mobile-menu {
+  .v-navigation-drawer {
+    margin-top: -64px !important;
+    height: 100vh !important;
+    z-index: 2000 !important;
+  }
+}
+@media (min-width: 960px) {
+  .horizontal-navbar {
+    padding: 0px 30px;
+    margin: 0px auto;
+    max-width: 1300px;
+    align-items: center;
+    display: flex;
+    z-index: 11;
+    position: relative;
+
+    ul {
+      padding: 0px;
+      margin: 0px;
+    }
+
+    .single-item a {
+      align-items: center;
+      display: flex;
+    }
+
+    li {
+      list-style: none;
+
+      a {
+        line-height: 35px;
+        color: inherit;
+        opacity: 0.7;
+        text-decoration: none;
+
+        i {
+          margin-right: 10px;
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    > li {
+      padding: 5px 10px;
+    }
+
+    .first-level {
+      position: relative;
+
+      a {
+        padding: 5px 0;
+
+        .second-level {
+          background: inherit;
+          border-radius: 8px;
+
+          li {
+            a {
+              i {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+
+      a:hover {
+        .second-level {
+          display: block;
+        }
+      }
+    }
+
+    .second-level {
+      position: absolute;
+      display: none;
+      top: 44px;
+      padding: 8px;
+      min-width: 230px;
+      box-shadow: 7px 15px 20px 0px rgba(0, 0, 0, 0.1);
+      -webkit-box-shaodw: 7px 15px 20px 0px rgba(0, 0, 0, 0.1);
+
+      li {
+        padding: 3px 10px;
+
+        a {
+          opacity: 0.7;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .horizontal-navbar {
+    .first-level {
+      &.two-column {
+        .second-level {
+          width: 400px;
+          li {
+            width: 50%;
+            float: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+      &.mega-dropdown {
+        position: static;
+        .second-level {
+          left: 0;
+          right: 0;
+          max-height: 400px;
+          overflow: auto;
+          margin: 0 auto;
+          li {
+            width: 25%;
+            float: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

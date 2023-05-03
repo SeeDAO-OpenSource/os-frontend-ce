@@ -1,0 +1,53 @@
+.bg-img-1 {
+  position: absolute;
+  right: -19%;
+  width: 377px;
+}
+
+.bg-img-2 {
+  position: absolute;
+  right: -50%;
+  width: 400px;
+  bottom: 0;
+}
+
+.month-table {
+  &.custom-px-0 {
+    tr.month-item {
+      td:first-child {
+        padding-left: 0 !important;
+      }
+      td:last-child {
+        padding-right: 0 !important;
+      }
+    }
+  }
+  tr.month-item {
+    td {
+      padding-top: 16px !important;
+      padding-bottom: 16px !important;
+    }
+    &:hover {
+      background: transparent !important;
+    }
+  }
+}
+
+// timeline
+.v-locale--is-ltr {
+  .theme-timeline {
+    &.v-timeline {
+      .v-timeline-divider__dot {
+        background: unset;
+      }
+      .v-timeline-divider--fill-dot .v-timeline-divider__inner-dot {
+        height: 20px;
+        width: 20px;
+        box-shadow: none;
+      }
+      .v-timeline-item__body {
+        width: 100%;
+      }
+    }
+  }
+}
