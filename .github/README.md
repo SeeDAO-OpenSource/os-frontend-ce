@@ -2,7 +2,6 @@
   <a href="https://seedao.xyz">
   
   <picture>
-    <source height="125" media="(prefers-color-scheme: dark)" srcset="https://github.com/SeeDAO-OpenSource/os-frontend-ce/blob/master/public/logo-dark.png?raw=true">
     <img height="125" alt="SeeDAO" src="https://github.com/SeeDAO-OpenSource/os-frontend-ce/blob/master/public/logo.png?raw=true">
   </picture>
   
