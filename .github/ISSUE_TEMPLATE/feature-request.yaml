@@ -38,7 +38,9 @@ body:
       placeholder: "共享代码片段以更好地解释该功能 Share a code snippet to explain the feature better."
       render: typescript
       value: |
-       
+       function func(a: number, b: number){
+        return a+b
+       }
   - type: checkboxes
     id: terms
     attributes:
