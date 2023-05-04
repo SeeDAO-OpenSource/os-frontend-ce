@@ -1,55 +1,51 @@
-name: "🤔 Question"
+name: "🤔 问题 Question"
 title: "\U0001F917 [Question]: "
-description: Ask a question so we can help you easily.
-labels: ["🤔 Question"]
+description: 提出问题，以便我们提供帮助 Ask a question so we can help you easily.
+labels: ["state:pending", "type:quuestion"]
 
 body:
   - type: markdown
     id: notice
     attributes:
       value: |
+        ### 注意事项
+        - 如果你只是要询问问题，可以透过 SeeDAO [Discord 服务器](https://discord.gg/seedao) 询问
+        - 如果你发现功能缺陷或错误, 请切换另一个模版 **🐛 Bug Report** 提交问题
+        - 如果你希望直接给予改善的建议, 请切换另一个模版 **🚀 Feature Request** 提交问题
+        - 请尽量提供更多信息作为参考，不用怕过长或无关紧要，这样能减少来回沟通时间
         ### Notice
-        - Don't forget you can ask your questions in our [Discord server](https://gofiber.io/discord).
-        - If you think this is just a bug, open the issue with the **☢️ Bug Report** template.
-        - If you have a suggestion for a Fiber feature you would like to see, open the issue with the **✏️ Feature Request** template.
-        - Write your issue with clear and understandable English.
+        - Don't forget you can ask your questions in our [Discord server](https://discord.gg/seedao).
+        - If you think this is just a bug, open the issue with the **🐛 Bug Report** template.
+        - If you have a suggestion for a feature you would like to see, open the issue with the **🚀 Feature Request** template.
+        - If you are unfamiliar with chinese, please write your issue with clear and understandable English.
   - type: textarea
     id: description
     attributes:
-      label: "Question Description"
-      description: "A clear and detailed description of the question."
-      placeholder: "Explain your question clearly, and in detail."
+      label: "问题描述 Question Description"
+      description: "对问题的清晰和详细的描述 A clear and detailed description of the question."
+      placeholder: "清楚、详细地解释你的问题 Explain your question clearly, and in detail."
     validations:
       required: true
   - type: textarea
     id: snippet
     attributes:
-      label: "Code Snippet (optional)"
-      description: "Code snippet may be really helpful to describe some features."
-      placeholder: "Share a code snippet to explain the feature better."
-      render: go
+      label: "代码片段 (选填) Code Snippet (optional)"
+      description: "提供有助于描述问题的代码片段 Code snippet may be really helpful to describe some questions."
+      placeholder: "共享代码片段以更好地解释问题 Share a code snippet to explain the question better."
+      render: typescript
       value: |
-        package main
-
-        import "github.com/gofiber/fiber/v2"
-        import "log"
-
-        func main() {
-          app := fiber.New()
-
-          // An example to describe the question
-
-          log.Fatal(app.Listen(":3000"))
-        }
+       function func(a: number, b: number){
+        return a+b
+       }
   - type: checkboxes
     id: terms
     attributes:
-      label: "Checklist:"
-      description: "By submitting this issue, you confirm that:"
+      label: "检查清单 Checklist:"
+      description: "提交之前请确认以下事项 By submitting this issue, you confirm that:"
       options:
-        - label: "I agree to follow Fiber's [Code of Conduct](https://github.com/gofiber/fiber/blob/master/.github/CODE_OF_CONDUCT.md)."
+        - label: "我同意社区行为准则 I agree to follow SeeDAO's [Code of Conduct](https://github.com/seedao-opensource/os-frontend-ce/blob/master/.github/CODE_OF_CONDUCT.md)."
           required: true
-        - label: "I have checked for existing issues that describe my questions prior to opening this one."
+        - label: "我已经检查没有重复或类似的议题 I have checked for existing issues that describe my suggestion prior to opening this one."
           required: true
-        - label: "I understand that improperly formatted questions may be closed without explanation."
+        - label: "我了解没有依照格式提交议题，将会被关闭 I understand that improperly formatted feature requests may be closed without explanation."
           required: true

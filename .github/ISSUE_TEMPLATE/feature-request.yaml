@@ -1,7 +1,7 @@
 name: "\U0001F680 功能请求 Feature Request"
 title: "\U0001F680 [Feature]: "
 description: 提出新的功能建议 Suggest an idea to improve this project.
-labels: ["effort:1", "state:pending", "type:enhancement"]
+labels: ["state:pending", "type:enhancement"]
 
 body:
   - type: markdown
