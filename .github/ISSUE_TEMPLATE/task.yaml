@@ -41,9 +41,9 @@ body:
       label: "检查清单 Checklist:"
       description: "提交任务之前，请确认: By creating the task, you confirm that:"
       options:
-        - label: "我已经在右侧选择 **effort** 标签，标注估计工作量 I have selected the 'effort' label on the right side to estimate the work done."
+        - label: "我已经在右侧选择 **effort** 标签，标注估计工作量 I have selected the **effort** label on the right side to estimate the work done."
           required: true
-        - label: "如果需求相对急迫 (2 周内)，请在右侧选择 *priority** 标签 For urgent requests (within 2 weeks), please select the 'priority' label on the right."
+        - label: "如果需求相对急迫 (2 周内)，请在右侧选择 **priority** 标签 For urgent requests (within 2 weeks), please select the **priority** label on the right."
           required: true
         - label: "我了解没有依照格式提交需求清单，将会被关闭 I understand that improperly formatted product backlog may be closed without explanation."
           required: true
