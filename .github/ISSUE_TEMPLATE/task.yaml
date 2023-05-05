@@ -1,0 +1,49 @@
+name: "\U0001F9E9  任务 Task"
+title: "\U0001F9E9 [Task]: "S
+description: 任何与项目有关需要执行的工作事项 Action items related to the repository that need to be executed.
+labels: ["state:pending", "type:task"]
+
+body:
+  - type: markdown
+    id: notice
+    attributes:
+      value: |
+        ### 注意事项 Notice
+        - 如果你不是本项目的贡献者，或是你还没办法完整填写本模版，就不要使用本模版提交 Issue，请使用 **🚀 Feature Request** 提交你想要的功能需求.
+        - If you're not already a contributor or unable to fill out the entire template, use the **🚀 Feature Request** template instead of this one.
+  - type: textarea
+    id: task-details
+    attributes:
+      label: "任务内容 Task Details"
+      description: "清晰详细地描述您希望完成的任务 A clear and detailed description of the task you would like to see done"
+      value: |
+       1.
+       2. 
+       3.
+    validations:
+      required: true
+  - type: textarea
+    id: deliverables
+    attributes:
+      label: "交付物 (选填) Deliverables"
+      description: "任务完成后交付可评量的结果 The measurable results that be provided when this task gets done."
+      value: |
+       1.
+       2.
+       3.  
+  - type: input
+    id: deadline
+    attributes:
+      label: "截止期限 (选填) Deadline (optional)"
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "检查清单 Checklist:"
+      description: "提交任务之前，请确认: By creating the task, you confirm that:"
+      options:
+        - label: "我已经在右侧选择 **effort** 标签，标注估计工作量 I have selected the 'effort' label on the right side to estimate the work done."
+          required: true
+        - label: "如果需求相对急迫 (2 周内)，请在右侧选择 *priority** 标签 For urgent requests (within 2 weeks), please select the 'priority' label on the right."
+          required: true
+        - label: "我了解没有依照格式提交需求清单，将会被关闭 I understand that improperly formatted product backlog may be closed without explanation."
+          required: true
