@@ -50,7 +50,7 @@ body:
     attributes:
       label: "可接受标准 Acceptance Criteria"
       description: "对于这个用户故事的可接受标准，包括测试用例和测试标准 Acceptance criteria with test cases and standards."
-     value: |
+      value: |
        ## <示例 1>
        1. 
        2. 
@@ -71,7 +71,7 @@ body:
     attributes:
       label: "任务清单 Todo List"
       description: "列点式填写具体的任务，例如 1. 设计登录界面, 2. 实现登录功能 List specific tasks, such as 1. Design login UI, 2. Implement login function."
-    value: |
+      value: |
        1. 
        2. 
        3.
