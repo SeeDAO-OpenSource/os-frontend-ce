@@ -78,7 +78,7 @@ body:
     validations:
       required: true   
   - type: textarea
-    id: todo-list
+    id: implemntation-dependency
     attributes:
       label: "风险和依赖 (选填) Implementation Dependency (optional)"
       description: "用户故事可能存在的风险和依赖，例如某个库的更新可能会影响这个用户故事的实现 Possible risks and dependencies that may affect the implementation."
