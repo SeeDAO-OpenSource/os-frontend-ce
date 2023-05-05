@@ -1,5 +1,5 @@
 name: "\U0001F9E9  任务 Task"
-title: "\U0001F9E9 [Task]: "S
+title: "\U0001F9E9 [Task]: "
 description: 任何与项目有关需要执行的工作事项 Action items related to the repository that need to be executed.
 labels: ["state:pending", "type:task"]
 
