@@ -1,56 +1,19 @@
 <script setup lang="ts">
-import { ref, watch } from "vue"
-import { storeToRefs } from "pinia"
+import { ref, watch, computed } from "vue"
+import { storeToRefs } from 'pinia'
 import DateService from "@/services/date.service"
 import { useScoreStore } from "@/stores/score"
+import ContactData from "./ContactData"
 import { useUserStore } from "@/stores/user"
 import AvatarService from "@/services/avatar.service"
-import type { ScoreMyRegistered, SearchRecord } from "@/types/score"
-import { useLayoutStore, SCORE_FULL_RECORD } from "@/stores/layout"
-import FullRecordDialog from "./FullRecordDialog.vue"
+import EthersService from "@/services/ethers.service"
+import { SCORE_FULL_RECORD, useLayoutStore } from '@/stores/layout'
+import type { ScoreMyRegistered } from "@/types/score"
 import { useCustomizerStore } from "@/stores/customizer"
 
-// Store Hooks
-const layoutStore = useLayoutStore()
-const userStore = useUserStore()
-const scoreStore = useScoreStore()
 const customizer = useCustomizerStore()
-
-// Refs
-const page = ref(0)
-const pageTotal = ref(1)
-const size = ref(10)
-const { searchRecords } = storeToRefs(scoreStore)
-const currentScores = ref([] as Array<SearchRecord>)
-
-// Watchers
-// Updates the 'currentScores' variable based on a filtered dataset 
-// stored in 'searchRecords', and also updates the 'page' and 
-// 'pageTotal' variables.
-watch(searchRecords, (newVal) => {
-    console.log('seaerch:', newVal.length)
-    if (newVal) {
-        page.value = 1
-        pageTotal.value = Math.ceil(newVal.length / size.value)
-        currentScores.value = searchRecords.value.slice(0, size.value)
-    }
-}, { deep: true })
-// Updates the 'currentScores' variable based on the page number
-// and a filtered dataset stored in 'searchRecords'.
-watch(page, (newVal) => {
-    if (searchRecords.value) {
-        currentScores.value = searchRecords.value.slice((newVal - 1) * size.value, newVal * size.value)
-    }
-}, { deep: true })
-
-// Functions
-/**
- * Opens the dialog of score record for the given ScoreMyRegistered record.
- * @async
- * @param {ScoreMyRegistered} record - The record to open the dialog for.
- * @returns {Promise<void>}
- */
-async function openPointRecord(record: ScoreMyRegistered): Promise<void> {
+const layoutStore = useLayoutStore()
+async function openPointRecord(record: ScoreMyRegistered) {
     layoutStore.setDialogVisible(SCORE_FULL_RECORD, true)
     layoutStore.setDialogLoading(SCORE_FULL_RECORD, true)
     await scoreStore.fetchFullPointRecord(`${record["_id"]}`)
@@ -58,11 +21,47 @@ async function openPointRecord(record: ScoreMyRegistered): Promise<void> {
     layoutStore.setDialogLoading(SCORE_FULL_RECORD, false)
 }
 
-/** 
- * Returns a string-based variant of the given status for use in a UI. 
- * @param {string} status - The status to get a variant for. 
- * @returns {string} - The string-based variant of the given status. 
- */
+const userStore = useUserStore()
+const valid = ref(true)
+const dialog = ref(false)
+const search = ref("")
+const rolesbg = ref([
+    "teal lighten-3",
+    "green lighten-3",
+    "cyan lighten-3",
+    "light-blue lighten-3",
+    "deep-purple lighten-2",
+])
+
+
+const page = ref(0)
+const pageTotal = ref(1)
+const size = ref(10)
+const scoreStore = useScoreStore()
+const { myRegisteredRecords } = storeToRefs(scoreStore)
+const currentScores = ref([] as Array<any>)
+
+
+watch(myRegisteredRecords, (newVal) => {
+    console.log('seaerch:', newVal.length)
+    if (newVal) {
+        page.value = 1
+        pageTotal.value = Math.ceil(newVal.length / size.value)
+        currentScores.value = myRegisteredRecords.value.slice(0, size.value)
+    }
+}, { deep: true })
+
+watch(page, (newVal, oldVal) => {
+    if (myRegisteredRecords.value) {
+        currentScores.value = myRegisteredRecords.value.slice((newVal - 1) * size.value, newVal * size.value)
+    }
+}, { deep: true })
+
+async function queryScoreUserRegistered() {
+    const user = await userStore.fetchWalletUser(`${EthersService.walletAddress()}`)
+    await scoreStore.queryScoreUserRegistered({ query: { filter: "creator", condition: `${user["_id"]}` }, offset: 0, limit: 100000 })
+}
+
 function getRecordVariant(status: string): string {
     if (status === "Reviewing") return 'warning'
     else if (status === "Rejected") return 'danger'
@@ -70,6 +69,73 @@ function getRecordVariant(status: string): string {
     else if (status === "Onchained") return 'success'
     else return 'light'
 }
+
+
+const desserts = ref(ContactData)
+const editedIndex = ref(-1)
+const editedItem = ref({
+    id: "",
+    avatar: "1.jpg",
+    userinfo: "",
+    usermail: "",
+    phone: "",
+    jdate: "",
+    role: "",
+    rolestatus: "",
+})
+const defaultItem = ref({
+    id: "",
+    avatar: "1.jpg",
+    userinfo: "",
+    usermail: "",
+    phone: "",
+    jdate: "",
+    role: "",
+    rolestatus: "",
+})
+//OnMounted
+
+//Methods
+
+const filteredList = computed(() => {
+    return desserts.value.filter((user: any) => {
+        return user.userinfo.toLowerCase().includes(search.value.toLowerCase())
+    })
+})
+
+function editItem(item: any) {
+    editedIndex.value = desserts.value.indexOf(item)
+    editedItem.value = Object.assign({}, item)
+    dialog.value = true
+}
+function deleteItem(item: any) {
+    const index = desserts.value.indexOf(item)
+    confirm("Are you sure you want to delete this item?") &&
+        desserts.value.splice(index, 1)
+}
+
+function close() {
+    dialog.value = false
+    setTimeout(() => {
+        editedItem.value = Object.assign({}, defaultItem.value)
+        editedIndex.value = -1
+    }, 300)
+}
+function save() {
+    if (editedIndex.value > -1) {
+        Object.assign(desserts.value[editedIndex.value], editedItem.value)
+    } else {
+        desserts.value.push(editedItem.value)
+    }
+    close()
+}
+
+//Computed Property
+const formTitle = computed(() => {
+    return editedIndex.value === -1 ? "New Contact" : "Edit Contact"
+})
+
+queryScoreUserRegistered()
 </script>
 
 <template>
@@ -164,6 +230,9 @@ function getRecordVariant(status: string): string {
 
                                 <div class="ml-5">
                                     <p>{{ userStore.getUserNickname(item.beneficiary) }}</p>
+                                    <span class="subtitle-2 d-block font-weight-regular">{{
+                                        item.usermail
+                                    }}</span>
                                 </div>
                             </div>
                         </td>
@@ -175,6 +244,5 @@ function getRecordVariant(status: string): string {
             </v-table>
             <v-pagination class="mt-3" v-model="page" :length="pageTotal" rounded="circle"></v-pagination>
         </v-card-text>
-        <FullRecordDialog />
     </v-card>
 </template>

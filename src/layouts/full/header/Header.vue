@@ -7,11 +7,22 @@ import { message, notification, profile } from "./data"
 import { useUserStore } from '@/stores/user'
 import { useI18n } from 'vue-i18n'
 import { CACHE_LOCALE } from "@/plugins/i18n"
+import { useRouter } from "vue-router"
 
 const { locale } = useI18n()
+const router = useRouter()
 const handleChangeLanguage = (e: { name: string, value: string }) => {
   locale.value = e.value
   localStorage.setItem(CACHE_LOCALE, locale.value)
+}
+
+const isNoMetaMask = ref(false)
+
+function validMetamaskCheck() {
+  if (typeof window.ethereum === 'undefined') {
+    console.log('MetaMask is not installed!')
+    isNoMetaMask.value = true
+  }
 }
 
 const userStore = useUserStore()
@@ -73,6 +84,13 @@ function disconnect() {
   isWalletConnected.value = false
 }
 
+async function chainCheck() {
+  await window.ethereum.request({
+    method: 'wallet_switchEthereumChain',
+    params: [{ chainId: '0x1' }],
+  })
+}
+
 function connectWallet() {
   return new Promise((resolve, reject) => {
     if (typeof window.ethereum !== "undefined") {
@@ -81,21 +99,37 @@ function connectWallet() {
         const account = accounts[0]
         if (account) {
           EthersService.setStorageWalletAddress(account)
-          isWalletConnecting.value = false
-          connectwalletDia.value = false
-          isWalletConnected.value = true
-          resolve(account)
+          chainCheck().then(() => {      
+            isWalletConnecting.value = false
+            connectwalletDia.value = false      
+            resolve(router.go(0))
+          }).catch(() => {
+            EthersService.disconnect()
+            console.error("Wrong chain")
+            reject()
+          })
         } else {
+          console.log('456')
+          EthersService.disconnect()
           console.error("No account")
+          reject()
         }
-      }).catch((err: any) => reject(err))
+      }).catch((err: any) => {
+        console.log('456')
+        EthersService.disconnect()
+        reject(err)
+      })
     } else {
       console.log("No Web3 Plugin")
+      console.log('456')
+      EthersService.disconnect()
       reject()
     }
   })
 }
 
+validMetamaskCheck()
+EthersService.switchNetwork()
 </script>
 
 <style>       hr {
@@ -107,9 +141,9 @@ function connectWallet() {
 
 <template>
   <v-app-bar :color="customizer.darktheme ? '' : customizer.navbarColor" elevation="0" :priority="priority" :class="[
-      'v-topbar',
-      customizer.navbarColor == '#f6f6f6' ? '' : 'text-white',
-    ]">
+    'v-topbar',
+    customizer.navbarColor == '#f6f6f6' ? '' : 'text-white',
+  ]">
     <v-btn class="hidden-sm-and-down" color="inherit" icon
       @click.stop="customizer.SET_MINI_SIDEBAR(!customizer.mini_sidebar)">
       <vue-feather type="menu" size="16"></vue-feather>
@@ -161,7 +195,7 @@ function connectWallet() {
       </template>
     </v-menu>
 
-    
+
     <v-menu anchor="bottom end" origin="auto" max-width="300">
       <template v-slot:activator="{ props }">
         <v-btn color="inherit" icon v-bind="props">
@@ -179,7 +213,36 @@ function connectWallet() {
       <v-btn color="secondary" size="large" rounded="lg" variant="elevated">
         <h3>{{ $t("Connect-Wallet") }}</h3>
         <v-dialog v-model="connectwalletDia" activator="parent" style="width: 400px;">
-          <v-card style="border-radius: 15px;">
+          <v-card style="border-radius: 15px;" v-if="isNoMetaMask">
+            <v-card-text align="center">
+              {{ $t("You-Have-No-Metamask") }}
+            </v-card-text>
+            <v-card-text>
+              {{ $t("If-You-Are-on-PC") }} :
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="primary" block variant="text">
+                <a href="https://metamask.io/" target="_blank">
+                  <h3>{{ $t("Install-Metamask-Then-Refresh") }}</h3>
+                </a>
+              </v-btn>
+            </v-card-actions>
+            <v-card-actions>
+              <v-btn color="primary" block :disabled="true">
+                <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
+              </v-btn>
+            </v-card-actions>
+            <v-card-text>
+              {{ $t("If-You-Are-on-Mobile") }} :</v-card-text>
+            <v-card-actions>
+              <v-btn color="primary" block variant="text">
+                <a href="https://metamask.io/" target="_blank">
+                  <h3>{{ $t("Install-Metamask-Then-Open-in-the-App") }}</h3>
+                </a>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+          <v-card style="border-radius: 15px;" v-else>
             <v-card-text>
               {{ $t("Please-Select-A-Connect-Method") }} :
             </v-card-text>
@@ -189,7 +252,7 @@ function connectWallet() {
               </v-btn>
             </v-card-actions>
             <v-card-actions>
-              <v-btn color="primary" block>
+              <v-btn color="primary" block :disabled="true">
                 <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
               </v-btn>
             </v-card-actions>
@@ -201,7 +264,7 @@ function connectWallet() {
     <!-- ---------------------------------------------- -->
     <!-- Messages -->
     <!-- ---------------------------------------------- -->
-    <v-menu anchor="bottom end" origin="auto" max-width="300" v-if="isWalletConnected">
+    <!-- <v-menu anchor="bottom end" origin="auto" max-width="300" v-if="isWalletConnected">
 
       <template v-slot:activator="{ props }">
         <v-btn color="inherit" icon v-bind="props">
@@ -226,12 +289,12 @@ function connectWallet() {
         </v-list-item>
         <v-btn variant="flat" color="primary" class="mt-4" block>See all Messages</v-btn>
       </v-list>
-    </v-menu>
+    </v-menu> -->
 
     <!-- ---------------------------------------------- -->
     <!-- Notification -->
     <!-- ---------------------------------------------- -->
-    <v-menu anchor="bottom end" origin="auto" v-if="isWalletConnected">
+    <!-- <v-menu anchor="bottom end" origin="auto" v-if="isWalletConnected">
       <template v-slot:activator="{ props }">
         <v-btn color="inherit" icon v-bind="props">
           <v-badge color="primary" dot>
@@ -255,7 +318,7 @@ function connectWallet() {
         </v-list-item>
         <v-btn block variant="flat" color="secondary" class="mt-4 py-4">See all Notifications</v-btn>
       </v-list>
-    </v-menu>
+    </v-menu> -->
 
     <!-- ---------------------------------------------- -->
     <!-- User Profile -->
@@ -275,13 +338,13 @@ function connectWallet() {
           <div class="ml-4">
             <h4 class="font-weight-medium fs-18">{{ userStore.getNickname() }}</h4>
             <span class="subtitle-2 font-weight-light">{{ EthersService.shortWalletAddress(undefined) }}</span>
-            <div class="d-flex">
+            <!-- <div class="d-flex">
               <span class="subtitle-2 font-weight-light"><small>Level 2</small></span>
-            </div>
+            </div> -->
           </div>
         </div>
         <hr class="text-gray-300 mt-2 mb-2" />
-        <v-list-item class="pa-3 mb-2" v-for="(item, i) in userprofile" :key="i" :to="item.to" :value="item"
+        <!-- <v-list-item class="pa-3 mb-2" v-for="(item, i) in userprofile" :key="i" :to="item.to" :value="item"
           :title="$t(item.title)" :subtitle="$t(item.desc)" rounded="lg">
           <template v-slot:prepend>
             <v-list-item-avatar start>
@@ -290,7 +353,7 @@ function connectWallet() {
               </v-btn>
             </v-list-item-avatar>
           </template>
-        </v-list-item>
+        </v-list-item> -->
         <v-btn block color="secondary" @click="disconnect()" variant="flat" class="mt-4 py-4">{{ $t("Logout") }}</v-btn>
       </v-list>
     </v-menu>

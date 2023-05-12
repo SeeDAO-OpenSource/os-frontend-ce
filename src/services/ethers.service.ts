@@ -6,7 +6,7 @@ const MASTER_CHAIN_ID = 1 // Mainnet
 
 export default class EthersService {
 
-  static isAddress(address: string) {
+  static isAddress(address: string | null) {
     return ethers.isAddress(address)
   }
 
@@ -79,9 +79,13 @@ export default class EthersService {
       window.ethereum
         .request(this.network())
         .then(() => {
+          this.setStorageWalletAddress(`${this.walletAddress()}`)
           resolve(this.masterNetId())
         })
-        .catch((error: any) => reject(error))
+        .catch((error: any) => {
+          this.disconnect()
+          reject(error)
+        })
     })
   }
 
