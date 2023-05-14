@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-// import type { Score } from "@/spec/user"
+// import type { Score } from "@/types/user"
 import osapi from "@/services/osapi.service"
 const API_PATH_NOTIFICATION = "/api/notifications"
 

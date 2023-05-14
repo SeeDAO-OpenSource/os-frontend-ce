@@ -5,7 +5,7 @@ import TheEarnings from "@/views/dashboards/dashboardComponents/analytical/earni
 import MonthlyRevenue from "@/views/dashboards/dashboardComponents/analytical/monthly-revenue/MonthlyRevenue.vue"
 import WeeklyStats from "@/views/dashboards/dashboardComponents/analytical/weekly-stats/WeeklyStats.vue"
 
-const page = ref({ title: "My-Tasks" })
+const page = ref(1)
 const radios = ref("radio-1")
 const breadcrumbs = ref([
   {

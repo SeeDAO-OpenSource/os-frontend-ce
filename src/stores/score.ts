@@ -1,46 +1,87 @@
 import { defineStore } from 'pinia'
 import ScoreService from "@/services/score.service"
-// import type { Score } from "@/spec/user"
-import { getQuery } from "@/spec/query"
-import type { Query } from "@/spec/query"
+import type { SearchRecord, FullRecord, WalletScore, NewRecord, NewRecordResult, ScoreMyRegistered } from "@/types/score"
+import { getQuery } from "@/types/query"
+import type { Query } from "@/types/query"
 import osapi from "@/services/osapi.service"
+
 const API_PATH_SCORE = "/api/scores"
-
-interface WalletScore {
-  onchainScore: number,
-  offchainScore: number,
-  level: number
-}
-
 interface ScoreState {
   wallet: WalletScore,
-  searchRecords: Array<any>
-  fullRecord: any
-  myRegisteredRecords: Array<any>
+  searchRecords: Array<SearchRecord>,
+  fullRecord: FullRecord,
+  myScores: Array<SearchRecord>,
+  myRegisteredRecords: Array<ScoreMyRegistered>,
+  symbolShortName: string,
 }
 
 export const useScoreStore = defineStore('score', {
-
   state: (): ScoreState => ({
+    symbolShortName: "$SCR",
     wallet: {
       onchainScore: -1,
-      offchainScore: -1,
+      offchainScore: {
+        registered: -1,
+        reviewing: -1
+      },
+      updated: 0,
       level: -1,
     },
     searchRecords: [],
-    fullRecord: {},
-    myRegisteredRecords: [
-    ]
+    fullRecord: {
+      _id: -1,
+      wallet: "",
+      event: "",
+      creator: {
+        _id: 0,
+        wallet: "",
+        nickname: ""
+      },
+      beneficiary: {
+        _id: 0,
+        wallet: "",
+        nickname: ""
+      },
+      status: "",
+      value_claim: -1,
+      datetime: -1,
+      links: [],
+      budget: {
+        subject: "",
+        _id: -1
+      },
+      notes: "",
+      value_fulfilled: -1,
+    },
+    myScores: [],
+    myRegisteredRecords: []
   }),
 
   actions: {
-    fetchFullPointRecord(recordId: string) {
+
+    
+    fetchFullPointRecord(recordId: string): Promise<FullRecord> {
       return new Promise((resolve, reject) => {
         osapi
-          .post(`${API_PATH_SCORE}/find`, { recordId })
+          .post(`${API_PATH_SCORE}/find/id`, { recordId })
+          .then((data) => {
+            const record: FullRecord = data.data.data
+            this.setFullRecord(record)
+            resolve(record)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    queryMyScores(query: Partial<Query>) {
+      return new Promise((resolve, reject) => {
+        osapi
+          .post(`${API_PATH_SCORE}/query`, getQuery(query))
           .then((data) => {
             const scores: any = data.data.data
-            this.setFullRecord(scores)
+            this.setMyScores(scores)
             resolve(scores)
           })
           .catch((err) => {
@@ -49,12 +90,28 @@ export const useScoreStore = defineStore('score', {
       })
     },
 
-    queryPointRecords(query: Partial<Query>) {
+    queryScoreUserRegistered(query: Partial<Query>) {
       return new Promise((resolve, reject) => {
         osapi
-          .post(`${API_PATH_SCORE}/find`, getQuery(query))
+          .post(`${API_PATH_SCORE}/query`, getQuery(query))
           .then((data) => {
             const scores: any = data.data.data
+            this.setScoresMyRegistered(scores)
+            resolve(scores)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    searchScores(query: Partial<Query>): Promise<Array<SearchRecord>> {
+      return new Promise((resolve, reject) => {
+        console.log('query::', query) 
+        osapi
+          .post(`${API_PATH_SCORE}/query`, getQuery(query))
+          .then((data) => {
+            const scores: Array<SearchRecord> = data.data.data
             this.setScoreSearched(scores)
             resolve(scores)
           })
@@ -69,7 +126,7 @@ export const useScoreStore = defineStore('score', {
         osapi
           .post(`${API_PATH_SCORE}/find/all`, filter)
           .then((data) => {
-            const scores: any = data.data.data
+            const scores: Array<SearchRecord> = data.data.data
             this.setScoreSearched(scores)
             resolve(scores)
           })
@@ -79,14 +136,14 @@ export const useScoreStore = defineStore('score', {
       })
     },
 
-    registerScore(records: Array<Partial<any>>) {
+    registerScore(records: Array<NewRecord>) {
       return new Promise((resolve, reject) => {
         osapi
           .post(`${API_PATH_SCORE}/create`, { records })
           .then((data) => {
-            const temp = data.data.data
-            console.log('temp::', temp)
-            resolve(temp)
+            const records: Array<NewRecordResult> = data.data.data
+            console.log('records::', records)
+            resolve(records)
           })
           .catch((err) => {
             reject(err)
@@ -94,12 +151,12 @@ export const useScoreStore = defineStore('score', {
       })
     },
 
-    fetchScoreMyRegistered(creatorId: string) {
+    fetchScoreMyRegistered(creatorId: string): Promise<ScoreMyRegistered[]> {
       return new Promise((resolve, reject) => {
         osapi
           .post(`${API_PATH_SCORE}/find/creator`, { creatorId })
           .then((data) => {
-            const scores: any = data.data.data
+            const scores: ScoreMyRegistered[] = data.data.data
             this.setScoresMyRegistered(scores)
             resolve(scores)
           })
@@ -122,25 +179,70 @@ export const useScoreStore = defineStore('score', {
       })
     },
 
-    setFullRecord(record: any) {
+    fetchWalletRegisteredScore(userId: string | null) {
+      return new Promise((resolve, reject) => {
+        osapi
+          .post(`${API_PATH_SCORE}/find/registered/total`, { userId })
+          .then((data) => {
+            const score: number = data.data.data
+            this.setOffChainRegisteredScore(score)
+            resolve(score)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    fetchWalletReviewingScore(userId: string | null) {
+      return new Promise((resolve, reject) => {
+        osapi
+          .post(`${API_PATH_SCORE}/find/reviewing/total`, { userId })
+          .then((data) => {
+            const score: number = data.data.data
+            this.setOffChainReviewingScore(score)
+            resolve(score)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+    setFullRecord(record: FullRecord) {
       this.fullRecord = record
     },
 
     setWalletOnchainScore(score: number) {
       this.wallet.onchainScore = score
+      this.wallet.updated = new Date().getTime()
     },
 
-    setScoresMyRegistered(records: any) {
+    setScoresMyRegistered(records: Array<ScoreMyRegistered>) {
       this.myRegisteredRecords = records
     },
 
-    setScoreSearched(records: any) {
+    setScoreSearched(records: Array<SearchRecord>) {
       this.searchRecords = records
+    },
+
+    setMyScores(records: Array<SearchRecord>) {
+      this.myScores = records
+    },
+
+    setOffChainRegisteredScore(score: number){
+      console.log('reg score:', score)
+      this.wallet.offchainScore.registered = score
+    },
+
+    setOffChainReviewingScore(score: number){
+      console.log('review score:', score)
+      this.wallet.offchainScore.reviewing = score
     },
 
     updateWalletLevel() {
       const score = (this.wallet.onchainScore > -1 ? this.wallet.onchainScore : 0)
-        + (this.wallet.offchainScore > -1 ? this.wallet.offchainScore : 0)
+        + (this.wallet.offchainScore.registered > -1 ? this.wallet.offchainScore.registered : 0)
       if (score < 5000) {
         this.wallet.level = 0
       } else if (score < 20000) {
@@ -164,4 +266,3 @@ export const useScoreStore = defineStore('score', {
   getters: {
   }
 })
-

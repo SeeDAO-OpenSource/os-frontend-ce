@@ -1,0 +1,96 @@
+name: "\U0001F381  需求清单 Product Backlog"
+title: "\U0001F381 [Backlog]: "
+description: 产品迭代的需求待办清单 Suggest an emergent, ordered list of what is needed to improve the product.
+labels: ["state:pending", "type:backlog"]
+
+body:
+  - type: markdown
+    id: notice
+    attributes:
+      value: |
+        ### 注意事项 Notice
+        - 如果你不是本项目的贡献者，或是你还没办法完整填写本模版，就不要使用本模版提交 Issue，请使用 **🚀 Feature Request** 提交你想要的功能需求.
+        - If you're not already a contributor or unable to fill out the entire template, use the **🚀 Feature Request** template instead of this one.
+  - type: textarea
+    id: description
+    attributes:
+      label: "用户故事 User Story"
+      description: "描述用户是谁，需要完成什么任务以及为什么需要完成这个任务 Describe who the user is, what task they need to get done, and why they need to do it."
+      placeholder: "提示：可以额外描述用户在没有这个功能前是怎么完成任务 Hint: describe how the user completed the task before this feature was implemented."
+      value: |
+       ## <故事 1>
+       ### <路径 1>
+       1. 
+       2. 
+       ### <路径 2>
+       1. 
+       2. 
+       ## <故事 2>   
+    validations:
+      required: true
+  - type: textarea
+    id: detailed-description
+    attributes:
+      label: "详细描述 Detailed Description"
+      description: "对用户故事的详细描述，包括具体的功能要求、界面设计、交互流程 Provide a detailed user story description, including specific functional requirements, interface design, and interaction flow."
+      placeholder: "提示：原型图、参考截图可以直接 Ctrl-C/V 复制粘贴 Hint: image can be copy-paste using Ctrl-C/V."
+      value: |
+       ## <故事 1>
+       ### <功能点>
+       1. 
+       2. 
+       ### <异常反馈>
+       1. 
+       2.  
+       ## <故事 2>                
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: "可接受标准 Acceptance Criteria"
+      description: "对于这个用户故事的可接受标准，包括测试用例和测试标准 Acceptance criteria with test cases and standards."
+      value: |
+       ## <示例 1>
+       1. 
+       2. 
+       3.
+       4.
+       ## <示例 2>
+       1. 
+       2.
+       3.
+       4.  
+       ## <非功能性要求, 如: 性能, 安全性>
+       1. 
+       2.
+    validations:
+      required: true
+  - type: textarea
+    id: todo-list
+    attributes:
+      label: "任务清单 Todo List"
+      description: "列点式填写具体的任务，例如 1. 设计登录界面, 2. 实现登录功能 List specific tasks, such as 1. Design login UI, 2. Implement login function."
+      value: |
+       1. 
+       2. 
+       3.
+    validations:
+      required: true   
+  - type: textarea
+    id: implemntation-dependency
+    attributes:
+      label: "风险和依赖 (选填) Implementation Dependency (optional)"
+      description: "用户故事可能存在的风险和依赖，例如某个库的更新可能会影响这个用户故事的实现 Possible risks and dependencies that may affect the implementation."
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: "检查清单 Checklist:"
+      description: "提交需求清单之前，请确认: By submitting the product backlog, you confirm that:"
+      options:
+        - label: "我已经在右侧选择 **effort** 标签，标注估计工作量 I have selected the **effort** label on the right side to estimate the work done."
+          required: true
+        - label: "如果需求相对急迫 (2 周内)，请在右侧选择 **priority** 标签 For urgent requests (within 2 weeks), please select the **priority** label on the right."
+          required: true
+        - label: "我了解没有依照格式提交需求清单，将会被关闭 I understand that improperly formatted product backlog may be closed without explanation."
+          required: true

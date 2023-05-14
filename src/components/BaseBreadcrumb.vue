@@ -11,7 +11,7 @@ const props = defineProps({
     <v-col cols="12" sm="12">
       <v-toolbar flat class="pa-0">
         <div>
-          <h2 class="pa-0">{{ $t(title) }}</h2>
+          <h2 class="pa-0">{{ $t(`${title}`) }}</h2>
         </div>
         <slot></slot>
         <v-spacer></v-spacer>

@@ -1,10 +1,15 @@
 import { defineStore } from 'pinia'
-// import type { Score } from "@/spec/user"
+// import type { Score } from "@/types/user"
 import osapi from "@/services/osapi.service"
 const API_PATH_BUDGET = "/api/budgets"
 
+interface BudgetSubject {
+  _id: number,
+  subject: string
+}
+
 interface BudgetState {
-    subjects: Array<any>
+    subjects: Array<BudgetSubject>
 }
 
 export const useBudgetStore = defineStore('budget', {
@@ -14,12 +19,12 @@ export const useBudgetStore = defineStore('budget', {
   }),
 
   actions: {
-    fetchBudgetSubjects(season: string) {
+    fetchBudgetSubjects(season: string): Promise<Array<BudgetSubject>> {
       return new Promise((resolve, reject) => {
         osapi
           .post(`${API_PATH_BUDGET}/query/subject`, { season })
           .then((data) => {
-            const subjects: any = data.data.data
+            const subjects: Array<BudgetSubject> = data.data.data
             this.setBudgetSubjects(subjects)
             resolve(subjects)
           })
@@ -29,7 +34,7 @@ export const useBudgetStore = defineStore('budget', {
       })
     },
 
-    setBudgetSubjects(subjects: any) {
+    setBudgetSubjects(subjects: Array<BudgetSubject>) {
       this.subjects = subjects
     },
 

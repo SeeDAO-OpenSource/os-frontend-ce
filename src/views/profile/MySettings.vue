@@ -6,7 +6,7 @@ import MonthlyRevenue from "@/views/dashboards/dashboardComponents/analytical/mo
 import MyRanking from "@/views/profile/my-ranking/MyRanking.vue"
 
 
-const page = ref({ title: "My-Tasks" })
+const page = ref(1)
 const pagenum = ref(1)
 const radios = ref("radio-1")
 const tabs = ref([

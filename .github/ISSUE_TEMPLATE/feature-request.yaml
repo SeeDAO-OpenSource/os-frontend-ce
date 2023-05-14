@@ -1,60 +1,55 @@
-name: "\U0001F680 Feature Request"
+name: "\U0001F680 功能请求 Feature Request"
 title: "\U0001F680 [Feature]: "
-description: Suggest an idea to improve this project.
-labels: ["✏️ Feature"]
+description: 提出新的功能建议 Suggest an idea to improve this project.
+labels: ["state:pending", "type:enhancement"]
 
 body:
   - type: markdown
     id: notice
     attributes:
       value: |
+        ### 注意事项
+        - 如果你只是要询问问题，可以透过 SeeDAO [Discord 服务器](https://discord.gg/seedao) 询问
+        - 如果你发现功能缺陷或错误, 请切换另一个模版 **🐛 Bug Report** 提交问题
+        - 请尽量提供更多信息作为参考，不用怕过长或无关紧要，这样能减少来回沟通时间
         ### Notice
-        - Don't forget you can ask your questions in our [Discord server](https://gofiber.io/discord).
-        - If you think this is just a bug, open the issue with the **☢️ Bug Report** template.
-        - Write your issue with clear and understandable English.
+        - Don't forget you can ask your questions in our [Discord server](https://discord.gg/seedao).
+        - If you think this is just a bug, open the issue with the **🐛 Bug Report** template.
+        - If you are unfamiliar with chinese, please write your issue with clear and understandable English.
   - type: textarea
     id: description
     attributes:
-      label: "Feature Description"
-      description: "A clear and detailed description of the feature you would like to see added."
-      placeholder: "Explain your feature clearly, and in detail."
+      label: "功能描述 Feature Description"
+      description: "您希望添加的功能的清晰详细描述 A clear and detailed description of the feature you would like to see added."
+      placeholder: "清楚、详细地解释您想要的功能 Explain your feature clearly, and in detail."
     validations:
       required: true
   - type: textarea
     id: additional-context
     attributes:
-      label: "Additional Context (optional)"
-      description: "If you have something else to describe, write them here."
-      placeholder: "Write here what you can describe differently."
+      label: "补充信息 (选填) Additional Context (optional)"
+      description: "如果您还有其他要补充的，请写在这里 If you have something else to describe, write them here."
+      placeholder: "在这里写下补充信息 Write here what you can describe differently."
   - type: textarea
     id: snippet
     attributes:
-      label: "Code Snippet (optional)"
-      description: "Code snippet may be really helpful to describe some features."
-      placeholder: "Share a code snippet to explain the feature better."
-      render: go
+      label: "代码片段 (选填) Code Snippet (optional)"
+      description: "提供有助于描述功能的代码片段 Code snippet may be really helpful to describe some features."
+      placeholder: "共享代码片段以更好地解释该功能 Share a code snippet to explain the feature better."
+      render: typescript
       value: |
-        package main
-
-        import "github.com/gofiber/fiber/v2"
-        import "log"
-
-        func main() {
-          app := fiber.New()
-
-          // An example to describe the feature
-
-          log.Fatal(app.Listen(":3000"))
-        }
+       function func(a: number, b: number){
+        return a+b
+       }
   - type: checkboxes
     id: terms
     attributes:
-      label: "Checklist:"
-      description: "By submitting this issue, you confirm that:"
+      label: "检查清单 Checklist:"
+      description: "提交之前请确认以下事项 By submitting this issue, you confirm that:"
       options:
-        - label: "I agree to follow Fiber's [Code of Conduct](https://github.com/gofiber/fiber/blob/master/.github/CODE_OF_CONDUCT.md)."
+        - label: "我同意社区行为准则 I agree to follow SeeDAO's [Code of Conduct](https://github.com/seedao-opensource/os-frontend-ce/blob/master/.github/CODE_OF_CONDUCT.md)."
           required: true
-        - label: "I have checked for existing issues that describe my suggestion prior to opening this one."
+        - label: "我已经检查没有重复或类似的议题 I have checked for existing issues that describe my suggestion prior to opening this one."
           required: true
-        - label: "I understand that improperly formatted feature requests may be closed without explanation."
+        - label: "我了解没有依照格式提交议题，将会被关闭 I understand that improperly formatted feature requests may be closed without explanation."
           required: true

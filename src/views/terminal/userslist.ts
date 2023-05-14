@@ -1,33 +1,36 @@
 export default [
     {
-      name: "Ricky",
+      name: "0xRory",
       status: "success",
-      lastMessage: "Hey! What's up? So many times since we",
+      tokenGated: false,
+      lastMessage: "https://app.sending.me/mobile_guide/",
       image: "1.jpg",
       messages: [
         {
           id: 0,
-          text: "Hey! What's up?",
+          text: "Ha",
         },
         {
           id: 1,
-          text: "Are you there?",
+          text: "YO, 他有手机版 (目前apple是测试版) 可以下载",
+          fromMe: true,
         },
         {
           id: 2,
-          text: "Let me know when you come back.",
+          text: "他好像沒有android",
         },
         {
           id: 3,
-          text: "I am here!",
+          text: "https://app.sending.me/mobile_guide/",
           fromMe: true,
         },
       ],
     },
     {
-      name: "Jamey Brownlow",
+      name: "baiyu",
       status: "gray-light",
-      lastMessage: "Good news coming tonight. Seems they agreed to proceed",
+      tokenGated: false,
+      lastMessage: "晚安",
       image: "2.jpg",
       messages: [
         {
@@ -50,21 +53,24 @@ export default [
       ],
     },
     {
-      name: "Livia Walsh",
+      name: "第 2 届市政厅",
       status: "danger",
-      lastMessage: "Check out my latest email plz!",
+      tokenGated: true,
+      lastMessage: "下周一通气会，要讨论 3 个提案",
       image: "3.jpg",
     },
     {
-      name: "Jaron Fitzroy",
+      name: "研发公会",
       status: "gray-light",
-      lastMessage: "What about summer break?",
+      tokenGated: true,
+      lastMessage: "ChatGPT 被封号了，怎搞？",
       image: "4.jpg",
     },
     {
-      name: "Mike Lewis",
+      name: "宏观经济研讨会",
       status: "success",
-      lastMessage: "Just ain't sure about the weekend now. 90% I'll make it.",
+      tokenGated: true,
+      lastMessage: "BTC 搞不好会到 50000",
       image: "5.jpg",
     },
   ];
