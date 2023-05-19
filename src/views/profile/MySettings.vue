@@ -106,7 +106,7 @@ async function connectGoogle() {
 async function connectTwitter() {
     try {
         isUpdating.value.twitter = true
-        const results = await signInWithPopup(auth, twitterProvider)
+        const results: any = await signInWithPopup(auth, twitterProvider)
         console.log('results::', results)
         console.log('results[_tokenResponse].screenName::', results['_tokenResponse'].screenName)
         myAccount.value.twitter = {
@@ -119,6 +119,7 @@ async function connectTwitter() {
             wallet: myAccount.value.wallet,
             twitter: myAccount.value.twitter,
         })
+        console.log('results::', results)
         setUserAccounts(newUser)
         isUpdating.value.twitter = false
     } catch (e) {
