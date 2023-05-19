@@ -239,13 +239,13 @@ function uppdateWechat() {
 function setUserAccounts(user: any) {
     myAccount.value._id = user._id
     myAccount.value.wallet = user.wallet
-    myAccount.value.email = user.email
-    myAccount.value.nickname = user.nickname
-    myAccount.value.discord = user.discord
-    myAccount.value.google = user.google
-    myAccount.value.twitter = user.twitter
-    myAccount.value.telegram = user.telegram
-    myAccount.value.wechat = user.wechat
+    if(user.email) myAccount.value.email = user.email
+    if(user.nickname) myAccount.value.nickname = user.nickname
+    if(user.discord) myAccount.value.discord = user.discord
+    if(user.google) myAccount.value.google = user.google
+    if(user.twitter) myAccount.value.twitter = user.twitter
+    if(user.telegram) myAccount.value.telegram = user.telegram
+    if(user.wechat) myAccount.value.wechat = user.wechat
     if (myAccount.value.discord) {
         discordStr.value = `${myAccount.value.discord.name}`
     }
