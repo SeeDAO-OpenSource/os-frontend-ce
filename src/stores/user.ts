@@ -25,6 +25,26 @@ export const useUserStore = defineStore('user', {
   actions: { 
 
     // actions
+
+    updateUserProfile(user: Partial<User>){
+      return new Promise((resolve, reject) => {
+        this.setWalletUser(null)
+        this.setUserName(null)
+        osapi
+          .post(`${API_PATH_USER}/profile/update`, user)
+          .then((data) => {
+            const user: User = data.data.data
+            this.setWalletUser(user)
+            this.setUserName(user)
+            resolve(user)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+
+
     fetchWalletUser(wallet: string | null = EthersService.walletAddress()): Promise<User> {
       return new Promise((resolve, reject) => {
         this.setWalletUser(null)

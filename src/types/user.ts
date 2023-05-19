@@ -21,7 +21,7 @@ export interface User {
 
 export interface AuthAccount {
     name:      string;
-    _id:       number;
+    _id?:       number;
     id:        string;
     username?: string;
     email?:    string;
