@@ -1,4 +1,3 @@
-import Web3 from "web3"
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import App from "./App.vue"
