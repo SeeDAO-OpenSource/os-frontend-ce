@@ -2,9 +2,11 @@
 import EthersService from '@/services/ethers.service'
 import { useRouter } from "vue-router"
 import { ref } from 'vue'
+import { useDBTokenStore } from '@/stores/dbtoken'
 const connectwalletDia = ref(false)
 const isWalletConnecting = ref(false)
 
+const dbTokenStore = useDBTokenStore()
 const router = useRouter()
 const isNoMetaMask = ref(false)
 
@@ -31,9 +33,15 @@ function connectWallet() {
                 if (account) {
                     chainCheck().then(() => {
                         EthersService.setStorageWalletAddress(account)
-                        isWalletConnecting.value = false
+                        dbTokenStore.walletLogin(account).then(() => {
+                            isWalletConnecting.value = false
                         connectwalletDia.value = false
                         resolve(router.go(0))
+                        }).catch(() => {
+                            EthersService.disconnect()
+                            console.error("Invaild login")
+                            reject()
+                        })
                     }).catch(() => {
                         EthersService.disconnect()
                         console.error("Wrong Chain")

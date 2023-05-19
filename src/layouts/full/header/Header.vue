@@ -8,6 +8,7 @@ import { useUserStore } from '@/stores/user'
 import { useI18n } from 'vue-i18n'
 import { CACHE_LOCALE } from "@/plugins/i18n"
 import { useRouter } from "vue-router"
+import { useDBTokenStore } from "@/stores/dbtoken"
 
 const { locale } = useI18n()
 const router = useRouter()
@@ -15,6 +16,7 @@ const handleChangeLanguage = (e: { name: string, value: string }) => {
   locale.value = e.value
   localStorage.setItem(CACHE_LOCALE, locale.value)
 }
+const dbTokenStore = useDBTokenStore()
 
 const isNoMetaMask = ref(false)
 
@@ -99,10 +101,16 @@ function connectWallet() {
         const account = accounts[0]
         if (account) {
           EthersService.setStorageWalletAddress(account)
-          chainCheck().then(() => {      
-            isWalletConnecting.value = false
-            connectwalletDia.value = false      
-            resolve(router.go(0))
+          chainCheck().then(() => {
+            dbTokenStore.walletLogin(account).then(() => {
+              isWalletConnecting.value = false
+              connectwalletDia.value = false
+              resolve(router.go(0))
+            }).catch(() => {
+              EthersService.disconnect()
+              console.error("Invaild login")
+              reject()
+            })
           }).catch(() => {
             EthersService.disconnect()
             console.error("Wrong chain")
@@ -344,7 +352,7 @@ EthersService.switchNetwork()
           </div>
         </div>
         <hr class="text-gray-300 mt-2 mb-2" />
-        <!-- <v-list-item class="pa-3 mb-2" v-for="(item, i) in userprofile" :key="i" :to="item.to" :value="item"
+        <v-list-item class="pa-3 mb-2" v-for="(item, i) in userprofile" :key="i" :to="item.to" :value="item"
           :title="$t(item.title)" :subtitle="$t(item.desc)" rounded="lg">
           <template v-slot:prepend>
             <v-list-item-avatar start>
@@ -353,7 +361,7 @@ EthersService.switchNetwork()
               </v-btn>
             </v-list-item-avatar>
           </template>
-        </v-list-item> -->
+        </v-list-item>
         <v-btn block color="secondary" @click="disconnect()" variant="flat" class="mt-4 py-4">{{ $t("Logout") }}</v-btn>
       </v-list>
     </v-menu>

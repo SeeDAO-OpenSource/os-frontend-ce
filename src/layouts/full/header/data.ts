@@ -64,20 +64,20 @@ const profile = [
     title: "My-Settings",
     desc: "Account-Settings",
   },
-  {
-    color: "secondary",
-    icon: "inbox",
-    to: "/inbox",
-    title: "My-Inbox",
-    desc: "Messages-Notifications",
-  },
-  {
-    color: "success",
-    icon: "play",
-    to: "/tasks/my",
-    title: "My-Tasks",
-    desc: "Todos-and-Tasks",
-  },
+  // {
+  //   color: "secondary",
+  //   icon: "inbox",
+  //   to: "/inbox",
+  //   title: "My-Inbox",
+  //   desc: "Messages-Notifications",
+  // },
+  // {
+  //   color: "success",
+  //   icon: "play",
+  //   to: "/tasks/my",
+  //   title: "My-Tasks",
+  //   desc: "Todos-and-Tasks",
+  // },
 ];
 
 export { message, profile, notification };
