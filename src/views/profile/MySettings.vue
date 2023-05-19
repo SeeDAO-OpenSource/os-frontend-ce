@@ -108,8 +108,9 @@ async function connectTwitter() {
         isUpdating.value.twitter = true
         const results = await signInWithPopup(auth, twitterProvider)
         console.log('results::', results)
+        console.log('results[_tokenResponse].screenName::', results['_tokenResponse'].screenName)
         myAccount.value.twitter = {
-            handle: results.user.email,
+            handle: results['_tokenResponse'].screenName,
             name: results.user.displayName,
             id: results.user.uid
         }
