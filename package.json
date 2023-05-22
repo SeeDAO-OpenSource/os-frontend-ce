@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite --port 8080",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && cross-env NODE_OPTIONS=--max-old-space-size=4096 vite build",
     "preview": "vite preview --port 5050",
     "typecheck": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
@@ -14,6 +14,7 @@
     "axios": "^1.3.6",
     "ethers": "^6.3.0",
     "feather-icons": "4.29.0",
+    "firebase": "^9.22.0",
     "pinia": "2.0.20",
     "v-calendar": "3.0.0-alpha.8",
     "vite-plugin-vuetify": "^1.0.2",
@@ -24,10 +25,10 @@
     "vue-i18n": "^9.2.2",
     "vue-instantsearch": "4.4.2",
     "vue-router": "4.1.4",
+    "vue-spinner": "^1.0.4",
     "vue3-apexcharts": "1.4.1",
     "vue3-perfect-scrollbar": "1.6.0",
-    "vuetify": "3.0.1",
-    "web3": "^1.9.0"
+    "vuetify": "3.0.1"
   },
   "devDependencies": {
     "@mdi/font": "6.9.96",
@@ -38,6 +39,7 @@
     "@vue/eslint-config-typescript": "10.0.0",
     "@vue/tsconfig": "0.1.3",
     "@vuetify/vite-plugin": "1.0.0-alpha.3",
+    "cross-env": "^7.0.3",
     "eslint": "8.22.0",
     "eslint-plugin-vue": "8.7.1",
     "prettier": "2.7.1",

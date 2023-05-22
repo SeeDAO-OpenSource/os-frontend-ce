@@ -15,31 +15,31 @@ const sidebarItem: menu[] = [
     icon: "home",
     to: "/dashboard",
   },
-  {
-    title: "Terminal",
-    icon: "tablet",
-    to: "/terminal",
-  },
-  {
-    group: "/tasks/",
-    model: false,
-    icon: "check-circle",
-    title: "Tasks",
-    children: [
-      {
-        title: "My-Tasks",
-        to: "/tasks/my",
-      },
-      {
-        title: "Task-List",
-        to: "/tasks/",
-      },
-      {
-        title: "Create-Task",
-        to: "/tasks/create",
-      }
-    ]
-  },
+  // {
+  //   title: "Terminal",
+  //   icon: "tablet",
+  //   to: "/terminal",
+  // },
+  // {
+  //   group: "/tasks/",
+  //   model: false,
+  //   icon: "check-circle",
+  //   title: "Tasks",
+  //   children: [
+  //     {
+  //       title: "My-Tasks",
+  //       to: "/tasks/my",
+  //     },
+  //     {
+  //       title: "Task-List",
+  //       to: "/tasks/",
+  //     },
+  //     {
+  //       title: "Create-Task",
+  //       to: "/tasks/create",
+  //     }
+  //   ]
+  // },
   {
     group: "/scores/",
     model: false,
@@ -60,414 +60,414 @@ const sidebarItem: menu[] = [
       }
     ]
   },
-  {
-    group: "/events/",
-    model: false,
-    icon: "calendar",
-    title: "Events",
-    children: [
-      {
-        title: "My-Events",
-        to: "/events/my",
-      },
-      {
-        title: "Event-List",
-        to: "/events/",
-      },
-      {
-        title: "Create-Event",
-        to: "/events/create",
-      }
-    ]
-  },
-  {
-    group: "/bounty/",
-    model: false,
-    icon: "award",
-    title: "Bounty",
-    children: [
-      {
-        title: "My-Bounty",
-        to: "/bounty/my",
-      },
-      {
-        title: "Bounty-Pub",
-        to: "/bounty/",
-      },
-      {
-        title: "Launch-Bounty",
-        to: "/bounty/launch",
-      }
-    ]
-  },
-  {
-    group: "/proposals/",
-    model: false,
-    icon: "clipboard",
-    title: "Proposals",
-    children: [
-      {
-        title: "My-Proposals",
-        to: "/proposals/my",
-      },
-      {
-        title: "Proposal-List",
-        to: "/proposals/",
-      },
-      {
-        title: "Proposal-Generator",
-        to: "/proposals/generator",
-      }
-    ]
-  },
-  {
-    group: "/governance/",
-    model: false,
-    icon: "layers",
-    title: "Governance",
-    children: [
-      {
-        title: "Governance-Guide",
-        to: "/governance/guide",
-      },
-      {
-        title: "Governance-Advices",
-        to: "/governance/advices",
-      },
-      {
-        title: "Supervisory-Complaints",
-        to: "/governance/complaints",
-      }
-    ]
-  },
-  {
-    group: "/educations/",
-    model: false,
-    icon: "compass",
-    title: "Education",
-    children: [
-      {
-        title: "Learning-Resources",
-        to: "/educations/learning",
-      },
-      {
-        title: "Collaboration-Handbook",
-        to: "/educations/collaboration",
-      },
-      {
-        title: "Operation-College",
-        to: "/educations/operation",
-      },
-      {
-        title: "Project-Management-Class",
-        to: "/educations/project",
-      },
-      {
-        title: "Governance-Engineer-Bootcamp",
-        to: "/educations/governance",
-      }
-    ]
-  },
-  {
-    group: "/resources/",
-    model: false,
-    icon: "download",
-    title: "Resource-management",
-    children: [
-      {
-        title: "Document-Resources",
-        to: "/resources/documents",
-      },
-      {
-        title: "Media-Resources",
-        to: "/resources/media",
-      },
-      {
-        title: "Resource-Links",
-        to: "/resources/links",
-      }
-    ]
-  },
-  {
-    header: "Project",
-  },
-  {
-    title: "Project-list",
-    icon: "list",
-    to: "/projects",
-  },
-  {
-    group: "/projects/",
-    model: false,
-    icon: "star",
-    title: "My-Projects",
-    children: [
-      {
-        title: "Project-Management",
-        to: "/projects/my",
-      },
-      {
-        title: "Team-Members",
-        to: "/projects/teams",
-      },
-      {
-        title: "Event-Management",
-        to: "/projects/events",
-      },
-    ]
-  },
-  {
-    group: "/projects/",
-    model: false,
-    icon: "box",
-    title: "Project-Resources",
-    children: [
-      {
-        title: "Project-Grants-Apply",
-        to: "/projects/grants",
-      },
-      {
-        title: "Brand-Licensing-Apply",
-        to: "/projects/branding",
-      },
-      {
-        title: "Media-Publicity-Apply",
-        to: "/projects/publicity",
-      },
-    ]
-  },
-  {
-    header: "Guilds",
-  },
-  {
-    title: "Guilds-Overview",
-    icon: "flag",
-    to: "/guilds",
-  },
-  {
-    group: "/guilds/",
-    model: false,
-    icon: "book",
-    title: "Guild-Governance",
-    children: [
-      {
-        title: "Guild-Onboarding",
-        to: "/guilds/onboarding",
-      },
-      {
-        title: "Guild-Members",
-        to: "/guilds/members",
-      },
-      {
-        title: "Guild-Coordination",
-        to: "/guilds/coordination",
-      },
-      {
-        title: "Guild-Events",
-        to: "/guilds/events",
-      },
-      {
-        title: "Guild-Projects",
-        to: "/guilds/projects",
-      },
-    ]
-  },
-  {
-    group: "/guilds/",
-    model: false,
-    icon: "box",
-    title: "Guild-Resources",
-    children: [
-      {
-        title: "Guild-Services",
-        to: "/guilds/services",
-      },
-      {
-        title: "Guild-Treasury",
-        to: "/guilds/treasury",
-      },
-      {
-        title: "Guild-Budget",
-        to: "/guilds/budget",
-      },
-    ]
-  },
-  {
-    header: "City-Hall",
-  },
-  {
-    title: "Cowork-Kanban",
-    icon: "trello",
-    to: "/cityhall",
-  },
-  {
-    group: "/cityhall/onboarding/",
-    model: false,
-    icon: "users",
-    title: "Onboarding-Management",
-    children: [
-      {
-        title: "Onboarding-Members",
-        to: "/cityhall/onboarding/members",
-      },
-      {
-        title: "Onboarding-Activity",
-        to: "/cityhall/onboarding/activities",
-      },
-      {
-        title: "Onboarding-Tasks",
-        to: "/cityhall/onboarding/tasks",
-      },
-      {
-        title: "Onboarding-Management",
-        to: "/cityhall/onboarding/management",
-      }
-    ]
-  },
-  {
-    group: "/cityhall/proposals/",
-    model: false,
-    icon: "thumbs-up",
-    title: "Proposal-Management",
-    children: [
-      {
-        title: "Proposal-Veto",
-        to: "/cityhall/proposals/veto",
-      },
-      {
-        title: "Brand-Licensing-Review",
-        to: "/cityhall/proposals/branding",
-      },
-      {
-        title: "Media-Publicity-Review",
-        to: "/cityhall/proposals/publicity",
-      }
-    ]
-  },
-  {
-    group: "/cityhall/assets/",
-    model: false,
-    icon: "dollar-sign",
-    title: "Asset-Management",
-    children: [
-      {
-        title: "Budget-Plan",
-        to: "/cityhall/assets/budget",
-      },
-      {
-        title: "Score-Review",
-        to: "/cityhall/assets/reviews/scr",
-      },
-      {
-        title: "Token-Review",
-        to: "/cityhall/assets/reviews/tokens",
-      },
-      {
-        title: "SGN-Review",
-        to: "/cityhall/assets/reviews/sgn",
-      }
-    ]
-  },
-  {
-    group: "/cityhall/permissions/",
-    model: false,
-    icon: "key",
-    title: "Permission-Management",
-    children: [
-      {
-        title: "SBT-Permissions",
-        to: "/cityhall/permissions/sbt",
-      },
-      {
-        title: "Token-Permissions",
-        to: "/cityhall/permissions/token",
-      },
-      {
-        title: "Proposal-Permissions",
-        to: "/cityhall/permissions/proposals",
-      },
-      {
-        title: "Project-Permissions",
-        to: "/cityhall/permissions/projects",
-      },
-      {
-        title: "Event-Permissions",
-        to: "/cityhall/permissions/events",
-      },
-      {
-        title: "Guild-Permissions",
-        to: "/cityhall/permissions/guilds",
-      },
-      {
-        title: "Account-Permissions",
-        to: "/cityhall/permissions/accounts",
-      },
-      {
-        title: "Resource-Permissions",
-        to: "/cityhall/permissions/resource",
-      },
-      {
-        title: "OS-Permissions",
-        to: "/cityhall/permissions/os",
-      }
-    ]
-  },
-  {
-    group: "/cityhall/branding/",
-    model: false,
-    icon: "heart",
-    title: "Branding-Management",
-    children: [
-      {
-        title: "Coperation-Database",
-        to: "/cityhall/branding/cooperation",
-      },
-      {
-        title: "Important-Contacts",
-        to: "/cityhall/branding/contacts",
-      },
-      {
-        title: "City-Liaisons",
-        to: "/cityhall/branding/cities",
-      },
-      {
-        title: "Media-Center",
-        to: "/cityhall/branding/media",
-      }
-    ]
-  },
-  {
-    group: "/cityhall/infra/",
-    model: false,
-    icon: "hard-drive",
-    title: "Infra-Management",
-    children: [
-      {
-        title: "DAO-Tools",
-        to: "/cityhall/infra/tools",
-      },
-      {
-        title: "Collaboration-Tools",
-        to: "/cityhall/infra/collaboration",
-      },
-      {
-        title: "Onchain-Contracts",
-        to: "/cityhall/infra/blockchain",
-      },
-      {
-        title: "Server-Management",
-        to: "/cityhall/infra/cloud",
-      },
-      {
-        title: "Public-Account",
-        to: "/cityhall/infra/account",
-      },
-      {
-        title: "Data-and-Backup",
-        to: "/cityhall/infra/backup",
-      }
-    ]
-  },
+  // {
+  //   group: "/events/",
+  //   model: false,
+  //   icon: "calendar",
+  //   title: "Events",
+  //   children: [
+  //     {
+  //       title: "My-Events",
+  //       to: "/events/my",
+  //     },
+  //     {
+  //       title: "Event-List",
+  //       to: "/events/",
+  //     },
+  //     {
+  //       title: "Create-Event",
+  //       to: "/events/create",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/bounty/",
+  //   model: false,
+  //   icon: "award",
+  //   title: "Bounty",
+  //   children: [
+  //     {
+  //       title: "My-Bounty",
+  //       to: "/bounty/my",
+  //     },
+  //     {
+  //       title: "Bounty-Pub",
+  //       to: "/bounty/",
+  //     },
+  //     {
+  //       title: "Launch-Bounty",
+  //       to: "/bounty/launch",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/proposals/",
+  //   model: false,
+  //   icon: "clipboard",
+  //   title: "Proposals",
+  //   children: [
+  //     {
+  //       title: "My-Proposals",
+  //       to: "/proposals/my",
+  //     },
+  //     {
+  //       title: "Proposal-List",
+  //       to: "/proposals/",
+  //     },
+  //     {
+  //       title: "Proposal-Generator",
+  //       to: "/proposals/generator",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/governance/",
+  //   model: false,
+  //   icon: "layers",
+  //   title: "Governance",
+  //   children: [
+  //     {
+  //       title: "Governance-Guide",
+  //       to: "/governance/guide",
+  //     },
+  //     {
+  //       title: "Governance-Advices",
+  //       to: "/governance/advices",
+  //     },
+  //     {
+  //       title: "Supervisory-Complaints",
+  //       to: "/governance/complaints",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/educations/",
+  //   model: false,
+  //   icon: "compass",
+  //   title: "Education",
+  //   children: [
+  //     {
+  //       title: "Learning-Resources",
+  //       to: "/educations/learning",
+  //     },
+  //     {
+  //       title: "Collaboration-Handbook",
+  //       to: "/educations/collaboration",
+  //     },
+  //     {
+  //       title: "Operation-College",
+  //       to: "/educations/operation",
+  //     },
+  //     {
+  //       title: "Project-Management-Class",
+  //       to: "/educations/project",
+  //     },
+  //     {
+  //       title: "Governance-Engineer-Bootcamp",
+  //       to: "/educations/governance",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/resources/",
+  //   model: false,
+  //   icon: "download",
+  //   title: "Resource-management",
+  //   children: [
+  //     {
+  //       title: "Document-Resources",
+  //       to: "/resources/documents",
+  //     },
+  //     {
+  //       title: "Media-Resources",
+  //       to: "/resources/media",
+  //     },
+  //     {
+  //       title: "Resource-Links",
+  //       to: "/resources/links",
+  //     }
+  //   ]
+  // },
+  // {
+  //   header: "Project",
+  // },
+  // {
+  //   title: "Project-list",
+  //   icon: "list",
+  //   to: "/projects",
+  // },
+  // {
+  //   group: "/projects/",
+  //   model: false,
+  //   icon: "star",
+  //   title: "My-Projects",
+  //   children: [
+  //     {
+  //       title: "Project-Management",
+  //       to: "/projects/my",
+  //     },
+  //     {
+  //       title: "Team-Members",
+  //       to: "/projects/teams",
+  //     },
+  //     {
+  //       title: "Event-Management",
+  //       to: "/projects/events",
+  //     },
+  //   ]
+  // },
+  // {
+  //   group: "/projects/",
+  //   model: false,
+  //   icon: "box",
+  //   title: "Project-Resources",
+  //   children: [
+  //     {
+  //       title: "Project-Grants-Apply",
+  //       to: "/projects/grants",
+  //     },
+  //     {
+  //       title: "Brand-Licensing-Apply",
+  //       to: "/projects/branding",
+  //     },
+  //     {
+  //       title: "Media-Publicity-Apply",
+  //       to: "/projects/publicity",
+  //     },
+  //   ]
+  // },
+  // {
+  //   header: "Guilds",
+  // },
+  // {
+  //   title: "Guilds-Overview",
+  //   icon: "flag",
+  //   to: "/guilds",
+  // },
+  // {
+  //   group: "/guilds/",
+  //   model: false,
+  //   icon: "book",
+  //   title: "Guild-Governance",
+  //   children: [
+  //     {
+  //       title: "Guild-Onboarding",
+  //       to: "/guilds/onboarding",
+  //     },
+  //     {
+  //       title: "Guild-Members",
+  //       to: "/guilds/members",
+  //     },
+  //     {
+  //       title: "Guild-Coordination",
+  //       to: "/guilds/coordination",
+  //     },
+  //     {
+  //       title: "Guild-Events",
+  //       to: "/guilds/events",
+  //     },
+  //     {
+  //       title: "Guild-Projects",
+  //       to: "/guilds/projects",
+  //     },
+  //   ]
+  // },
+  // {
+  //   group: "/guilds/",
+  //   model: false,
+  //   icon: "box",
+  //   title: "Guild-Resources",
+  //   children: [
+  //     {
+  //       title: "Guild-Services",
+  //       to: "/guilds/services",
+  //     },
+  //     {
+  //       title: "Guild-Treasury",
+  //       to: "/guilds/treasury",
+  //     },
+  //     {
+  //       title: "Guild-Budget",
+  //       to: "/guilds/budget",
+  //     },
+  //   ]
+  // },
+  // {
+  //   header: "City-Hall",
+  // },
+  // {
+  //   title: "Cowork-Kanban",
+  //   icon: "trello",
+  //   to: "/cityhall",
+  // },
+  // {
+  //   group: "/cityhall/onboarding/",
+  //   model: false,
+  //   icon: "users",
+  //   title: "Onboarding-Management",
+  //   children: [
+  //     {
+  //       title: "Onboarding-Members",
+  //       to: "/cityhall/onboarding/members",
+  //     },
+  //     {
+  //       title: "Onboarding-Activity",
+  //       to: "/cityhall/onboarding/activities",
+  //     },
+  //     {
+  //       title: "Onboarding-Tasks",
+  //       to: "/cityhall/onboarding/tasks",
+  //     },
+  //     {
+  //       title: "Onboarding-Management",
+  //       to: "/cityhall/onboarding/management",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/cityhall/proposals/",
+  //   model: false,
+  //   icon: "thumbs-up",
+  //   title: "Proposal-Management",
+  //   children: [
+  //     {
+  //       title: "Proposal-Veto",
+  //       to: "/cityhall/proposals/veto",
+  //     },
+  //     {
+  //       title: "Brand-Licensing-Review",
+  //       to: "/cityhall/proposals/branding",
+  //     },
+  //     {
+  //       title: "Media-Publicity-Review",
+  //       to: "/cityhall/proposals/publicity",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/cityhall/assets/",
+  //   model: false,
+  //   icon: "dollar-sign",
+  //   title: "Asset-Management",
+  //   children: [
+  //     {
+  //       title: "Budget-Plan",
+  //       to: "/cityhall/assets/budget",
+  //     },
+  //     {
+  //       title: "Score-Review",
+  //       to: "/cityhall/assets/reviews/scr",
+  //     },
+  //     {
+  //       title: "Token-Review",
+  //       to: "/cityhall/assets/reviews/tokens",
+  //     },
+  //     {
+  //       title: "SGN-Review",
+  //       to: "/cityhall/assets/reviews/sgn",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/cityhall/permissions/",
+  //   model: false,
+  //   icon: "key",
+  //   title: "Permission-Management",
+  //   children: [
+  //     {
+  //       title: "SBT-Permissions",
+  //       to: "/cityhall/permissions/sbt",
+  //     },
+  //     {
+  //       title: "Token-Permissions",
+  //       to: "/cityhall/permissions/token",
+  //     },
+  //     {
+  //       title: "Proposal-Permissions",
+  //       to: "/cityhall/permissions/proposals",
+  //     },
+  //     {
+  //       title: "Project-Permissions",
+  //       to: "/cityhall/permissions/projects",
+  //     },
+  //     {
+  //       title: "Event-Permissions",
+  //       to: "/cityhall/permissions/events",
+  //     },
+  //     {
+  //       title: "Guild-Permissions",
+  //       to: "/cityhall/permissions/guilds",
+  //     },
+  //     {
+  //       title: "Account-Permissions",
+  //       to: "/cityhall/permissions/accounts",
+  //     },
+  //     {
+  //       title: "Resource-Permissions",
+  //       to: "/cityhall/permissions/resource",
+  //     },
+  //     {
+  //       title: "OS-Permissions",
+  //       to: "/cityhall/permissions/os",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/cityhall/branding/",
+  //   model: false,
+  //   icon: "heart",
+  //   title: "Branding-Management",
+  //   children: [
+  //     {
+  //       title: "Coperation-Database",
+  //       to: "/cityhall/branding/cooperation",
+  //     },
+  //     {
+  //       title: "Important-Contacts",
+  //       to: "/cityhall/branding/contacts",
+  //     },
+  //     {
+  //       title: "City-Liaisons",
+  //       to: "/cityhall/branding/cities",
+  //     },
+  //     {
+  //       title: "Media-Center",
+  //       to: "/cityhall/branding/media",
+  //     }
+  //   ]
+  // },
+  // {
+  //   group: "/cityhall/infra/",
+  //   model: false,
+  //   icon: "hard-drive",
+  //   title: "Infra-Management",
+  //   children: [
+  //     {
+  //       title: "DAO-Tools",
+  //       to: "/cityhall/infra/tools",
+  //     },
+  //     {
+  //       title: "Collaboration-Tools",
+  //       to: "/cityhall/infra/collaboration",
+  //     },
+  //     {
+  //       title: "Onchain-Contracts",
+  //       to: "/cityhall/infra/blockchain",
+  //     },
+  //     {
+  //       title: "Server-Management",
+  //       to: "/cityhall/infra/cloud",
+  //     },
+  //     {
+  //       title: "Public-Account",
+  //       to: "/cityhall/infra/account",
+  //     },
+  //     {
+  //       title: "Data-and-Backup",
+  //       to: "/cityhall/infra/backup",
+  //     }
+  //   ]
+  // },
   // { header: "Home" },
   // {
   //   title: "Analytical",

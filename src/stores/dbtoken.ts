@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-// import type { Score } from "@/spec/user"
+import serverConfig from "@/config/server"
+// import type { Score } from "@/types/user"
 import osapi from "@/services/osapi.service"
 import EthersService from '@/services/ethers.service'
 const API_PATH_USER = '/api/users'
@@ -36,7 +37,7 @@ export const useDBTokenStore = defineStore('dbtoken', {
         },
 
         getWelcomeMessage(wallet: string): string {
-            const data: SignMessageParams = getMessageObj(wallet)
+            const data: SignMessageParams = this.getMessageObj(wallet)
             return (
                 `${data.from} wants you to sign in\n with your Ethereum account:\n` +
                 `${data.wallet}\n\n` +
@@ -54,11 +55,11 @@ export const useDBTokenStore = defineStore('dbtoken', {
                         method: "personal_sign",
                         params: [message, wallet, 0]
                     })
-                    .then((sig) => {
+                    .then((sig: any) => {
                         this.setWalletSign(sig)
                         resolve(sig)
                     })
-                    .catch((error) => {
+                    .catch((error: any) => {
                         reject(error)
                     })
             })

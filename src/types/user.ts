@@ -1,3 +1,9 @@
+export interface QuickUser {
+    _id:      number;
+    wallet:   string;
+    nickname: string;
+}
+
 export interface User {
     _id:      number;
     sysuser:  Sysuser;
@@ -15,7 +21,7 @@ export interface User {
 
 export interface AuthAccount {
     name:      string;
-    _id:       number;
+    _id?:       number;
     id:        string;
     username?: string;
     email?:    string;

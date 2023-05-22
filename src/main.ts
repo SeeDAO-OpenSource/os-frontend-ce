@@ -1,4 +1,3 @@
-import Web3 from "web3"
 import { createApp } from "vue"
 import { createPinia } from "pinia"
 import App from "./App.vue"
@@ -23,6 +22,6 @@ app.use(createPinia())
 app.use(VCalendar, {})
 app.use(VueApexCharts)
 app.use(router)
-app.use(i18n)
 app.use(VueAxios, axios)
+app.use(i18n)
 app.use(vuetify).mount("#app")
