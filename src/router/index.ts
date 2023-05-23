@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 
 const router = createRouter({
-  history: createWebHistory("/"),  
+  history: createWebHistory("/"),
   routes: [
     {
       path: "/",
@@ -283,7 +283,7 @@ const router = createRouter({
           name: "SGNReview",
           path: "/cityhall/assets/reviews/sgn",
           component: () => import("@/views/cityhall/assets/SGNReview.vue"),
-        },{
+        }, {
           name: "TokenReview",
           path: "/cityhall/assets/reviews/tokens",
           component: () => import("@/views/cityhall/assets/TokenReview.vue"),
@@ -371,8 +371,8 @@ const router = createRouter({
 
         {
           name: "DAOTools",
-          path: "/cityhall/infra/tools",
-          component: () => import("@/views/cityhall/infra/DAOTools.vue"),
+          path: "/cityhall/infra/:type",
+          component: () => import("@/views/cityhall/infra/List.vue"),
         },
         {
           name: "CollaborationTools",
@@ -765,9 +765,10 @@ const router = createRouter({
           path: "/dashboards/modern",
           component: () => import("@/views/dashboards/modern/Modern.vue"),
         },
-        
+
       ],
     },
+
   ],
 })
 
