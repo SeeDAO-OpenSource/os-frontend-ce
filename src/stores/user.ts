@@ -6,7 +6,8 @@ export class UserState {
   wallet?: string
   nickName?: string
   accessToken?: string
-
+  islogining: boolean = false
+  loginDialogVisible: boolean = false
 }
 
 export const useUserStore = defineStore('user', {
@@ -14,30 +15,54 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     async tryAutoLogin() {
-      const token = localStorage.getItem('accessToken')
-      if (token) {
-        const result = await userService.tryAutoLogin()
+      this.islogining = true
+      try {
+        const token = localStorage.getItem('accessToken')
+        if (token) {
+          const result = await userService.tryAutoLogin()
+          if (result) {
+            this.$patch({
+              id: result.id,
+              wallet: result.wallet,
+              nickName: result.nickname,
+              accessToken: token,
+            })
+          }
+        }
+      } finally {
+        this.$patch({
+          islogining: false,
+          loginDialogVisible: false
+        })
+      }
+    },
+    async login() {
+      this.islogining = true
+      try {
+        const result = await userService.login()
         if (result) {
+          localStorage.setItem('accessToken', result.accessToken)
           this.$patch({
             id: result.id,
             wallet: result.wallet,
             nickName: result.nickname,
-            accessToken: token,
+            accessToken: result.accessToken
           })
         }
-      }
-    },
-    async login() {
-      const result = await userService.login()
-      if (result) {
-        localStorage.setItem('accessToken', result.accessToken)
+      } finally {
         this.$patch({
-          id: result.id,
-          wallet: result.wallet,
-          nickName: result.nickname,
-          accessToken: result.accessToken
+          islogining: false,
+          loginDialogVisible: false
         })
       }
+
+    },
+    logout() {
+      localStorage.removeItem('accessToken')
+      this.$reset()
+    },
+    showLoginDialog() {
+      this.loginDialogVisible = true
     }
   },
 

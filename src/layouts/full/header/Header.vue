@@ -8,48 +8,18 @@ import { useUserStore } from '@/stores/user'
 import { useI18n } from 'vue-i18n'
 import { CACHE_LOCALE } from "@/plugins/i18n"
 import { useRouter } from "vue-router"
-import { useDBTokenStore } from "@/stores/dbtoken"
 import { walletService } from "@/services/wallet.service"
 import { WalletType } from "@/web3"
 import { onMounted, onBeforeMount } from "vue"
 
 const { locale } = useI18n()
 const router = useRouter()
-const handleChangeLanguage = (e: { name: string, value: string }) => {
-  locale.value = e.value
-  localStorage.setItem(CACHE_LOCALE, locale.value)
-}
-const dbTokenStore = useDBTokenStore()
-
-const isNoMetaMask = ref(false)
-
-function validMetamaskCheck() {
-  if (typeof window.ethereum === 'undefined') {
-    console.log('MetaMask is not installed!')
-    isNoMetaMask.value = true
-  }
-}
-
 const userStore = useUserStore()
-
 const customizer = useCustomizerStore()
 
-function getLocaleAbbr() {
-  if (locale.value === 'en_US') {
-    return 'EN'
-  } else {
-    return 'CN'
-  }
-
-}
-
-const isWalletConnecting = ref(false)
-const isWalletConnected = ref(false)
+const isNoMetaMask = ref(false)
 const connectwalletDia = ref(false)
 const showSearch = ref(false)
-const href = ref(undefined)
-const messages = ref(message)
-const notifications = ref(notification)
 const userprofile = ref(profile)
 const priority = ref(customizer.setHorizontalLayout ? 0 : 0)
 const languages = ref([{
@@ -68,6 +38,20 @@ watch(priority, (newPriority) => {
   priority.value = newPriority
 })
 
+const handleChangeLanguage = (e: { name: string, value: string }) => {
+  locale.value = e.value
+  localStorage.setItem(CACHE_LOCALE, locale.value)
+}
+
+function getLocaleAbbr() {
+  if (locale.value === 'en_US') {
+    return 'EN'
+  } else {
+    return 'CN'
+  }
+
+}
+
 function getUserAvatar(size: number) {
   return AvatarService.getAvatar(`${EthersService.walletAddress()}`, size)
 }
@@ -77,11 +61,10 @@ function setDarkTheme(isDark: boolean) {
 }
 
 function disconnect() {
-  EthersService.disconnect()
-  isWalletConnected.value = false
+  userStore.logout()
 }
 
-async function connectWallet() {
+async function connectByMetaMask() {
   await walletService.setWalletType(WalletType.MetaMask)
   await userStore.login()
 }
@@ -92,11 +75,12 @@ onBeforeMount(async () => {
 
 </script>
 
-<style>       hr {
-         height: 1px;
-         background-color: #eee;
-         border: none;
-       }
+<style>
+hr {
+  height: 1px;
+  background-color: #eee;
+  border: none;
+}
 </style>
 
 <template>
@@ -170,55 +154,56 @@ onBeforeMount(async () => {
     </v-menu>
 
     <div class="ml-5 mr-7" v-if="!userStore.isLogin">
-      <v-btn color="secondary" size="large" rounded="lg" variant="elevated">
+      <v-btn :loading="userStore.islogining" color="secondary" size="large" rounded="lg" variant="elevated"
+        @click="userStore.showLoginDialog()">
         <h3>{{ $t("Connect-Wallet") }}</h3>
-        <v-dialog v-model="connectwalletDia" activator="parent" style="width: 400px;">
-          <v-card style="border-radius: 15px;" v-if="isNoMetaMask">
-            <v-card-text align="center">
-              {{ $t("You-Have-No-Metamask") }}
-            </v-card-text>
-            <v-card-text>
-              {{ $t("If-You-Are-on-PC") }} :
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" block variant="text">
-                <a href="https://metamask.io/" target="_blank">
-                  <h3>{{ $t("Install-Metamask-Then-Refresh") }}</h3>
-                </a>
-              </v-btn>
-            </v-card-actions>
-            <v-card-actions>
-              <v-btn color="primary" block :disabled="true">
-                <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
-              </v-btn>
-            </v-card-actions>
-            <v-card-text>
-              {{ $t("If-You-Are-on-Mobile") }} :</v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" block variant="text">
-                <a href="https://metamask.io/" target="_blank">
-                  <h3>{{ $t("Install-Metamask-Then-Open-in-the-App") }}</h3>
-                </a>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-          <v-card style="border-radius: 15px;" v-else>
-            <v-card-text>
-              {{ $t("Please-Select-A-Connect-Method") }} :
-            </v-card-text>
-            <v-card-actions>
-              <v-btn color="primary" block @click="connectWallet()">
-                <h3>{{ $t("Connect-with-Metamask") }}</h3>
-              </v-btn>
-            </v-card-actions>
-            <v-card-actions>
-              <v-btn color="primary" block :disabled="true">
-                <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-dialog>
       </v-btn>
+      <v-dialog v-model="userStore.loginDialogVisible" style="width: 400px;">
+        <v-card style="border-radius: 15px;" v-if="isNoMetaMask">
+          <v-card-text align="center">
+            {{ $t("You-Have-No-Metamask") }}
+          </v-card-text>
+          <v-card-text>
+            {{ $t("If-You-Are-on-PC") }} :
+          </v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" block variant="text">
+              <a href="https://metamask.io/" target="_blank">
+                <h3>{{ $t("Install-Metamask-Then-Refresh") }}</h3>
+              </a>
+            </v-btn>
+          </v-card-actions>
+          <v-card-actions>
+            <v-btn color="primary" block :disabled="true">
+              <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
+            </v-btn>
+          </v-card-actions>
+          <v-card-text>
+            {{ $t("If-You-Are-on-Mobile") }} :</v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" block variant="text">
+              <a href="https://metamask.io/" target="_blank">
+                <h3>{{ $t("Install-Metamask-Then-Open-in-the-App") }}</h3>
+              </a>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+        <v-card style="border-radius: 15px;" v-else>
+          <v-card-text>
+            {{ $t("Please-Select-A-Connect-Method") }} :
+          </v-card-text>
+          <v-card-actions>
+            <v-btn :loading="userStore.islogining" color="primary" block @click="connectByMetaMask()">
+              <h3>{{ $t("Connect-with-Metamask") }}</h3>
+            </v-btn>
+          </v-card-actions>
+          <v-card-actions>
+            <v-btn color="primary" block :disabled="true">
+              <h3>{{ $t("Connect-via-Email") }} (Comming Soon)</h3>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </div>
 
     <!-- ---------------------------------------------- -->

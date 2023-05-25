@@ -11,12 +11,16 @@ import MyScoreTable from "./MyScoreTable.vue"
 import MyRegistrationTable from "./MyRegistrationTable.vue"
 import FullRecordDialog from "./FullRecordDialog.vue"
 import EthersService from "@/services/ethers.service"
+import { useUserStore } from "@/stores/user"
 
 const tab = ref(0)
+
+const user = useUserStore()
+
 </script>
 
 <template>
-  <ConnectWalletFirst v-if="!EthersService.isAddress(EthersService.walletAddress())" />
+  <ConnectWalletFirst v-if="user.isLogin" />
   <v-row v-else>
     <!-- <v-colcol cols="12" sm="12" lg="4" class="">
       <DailyActivities></DailyActivities>
