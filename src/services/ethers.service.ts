@@ -1,4 +1,4 @@
-import { ethers } from "ethers"
+import { utils,ethers } from "ethers"
 
 const WALLET_ADDRESS = "walletAddress"
 const WALLET_CHANGED = "wallet-localstorage-changed"
@@ -6,8 +6,8 @@ const MASTER_CHAIN_ID = 1 // Mainnet
 
 export default class EthersService {
 
-  static isAddress(address: string | null) {
-    return ethers.isAddress(address)
+  static isAddress(address: string) {
+    return utils.isAddress(address)
   }
 
   static network() {

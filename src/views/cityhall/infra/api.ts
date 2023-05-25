@@ -1,5 +1,5 @@
 import { config } from '@/api'
-import { InfraToolsApi } from 'daoly-sdk-ce-lx'
+import { InfraToolsApi } from 'daoly-client-sdk'
 
 const toolApi = new InfraToolsApi(config)
 

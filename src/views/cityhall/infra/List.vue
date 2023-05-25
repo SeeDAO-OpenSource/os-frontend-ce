@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import api from './api'
 import { request } from '@/api';
-import type { ToolDto } from 'daoly-sdk-ce-lx';
+import type { ToolDto } from 'daoly-client-sdk';
 import { watch } from 'vue';
 import { onMounted } from 'vue';
 
@@ -18,7 +18,7 @@ const data = ref<ToolDto[]>([])
 const page = ref<{ page: number, limit: number, hasNext: boolean }>({ page: 1, limit: 10, hasNext: true })
 
 const fetchData = async () => {
-  const result = await request(() => api.toolControllerGetList(page.value.page, page.value.limit))
+  const result = await request(() => api.toolControllerGetList(undefined, page.value.page, page.value.limit))
   data.value = result.items
 }
 

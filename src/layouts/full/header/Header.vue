@@ -9,6 +9,9 @@ import { useI18n } from 'vue-i18n'
 import { CACHE_LOCALE } from "@/plugins/i18n"
 import { useRouter } from "vue-router"
 import { useDBTokenStore } from "@/stores/dbtoken"
+import { walletService } from "@/services/wallet.service"
+import { WalletType } from "@/web3"
+import { onMounted, onBeforeMount } from "vue"
 
 const { locale } = useI18n()
 const router = useRouter()
@@ -65,14 +68,6 @@ watch(priority, (newPriority) => {
   priority.value = newPriority
 })
 
-async function checkWalletConnection() {
-  if (await EthersService.isWalletConnected()) {
-    isWalletConnected.value = true
-    const user = await userStore.fetchWalletUser(`${EthersService.walletAddress()}`)
-  }
-}
-checkWalletConnection()
-
 function getUserAvatar(size: number) {
   return AvatarService.getAvatar(`${EthersService.walletAddress()}`, size)
 }
@@ -86,58 +81,15 @@ function disconnect() {
   isWalletConnected.value = false
 }
 
-async function chainCheck() {
-  await window.ethereum.request({
-    method: 'wallet_switchEthereumChain',
-    params: [{ chainId: '0x1' }],
-  })
+async function connectWallet() {
+  await walletService.setWalletType(WalletType.MetaMask)
+  await userStore.login()
 }
 
-function connectWallet() {
-  return new Promise((resolve, reject) => {
-    if (typeof window.ethereum !== "undefined") {
-      isWalletConnecting.value = true
-      window.ethereum.request({ method: 'eth_requestAccounts' }).then((accounts: Array<string>) => {
-        const account = accounts[0]
-        if (account) {
-          EthersService.setStorageWalletAddress(account)
-          chainCheck().then(() => {
-            dbTokenStore.walletLogin(account).then(() => {
-              isWalletConnecting.value = false
-              connectwalletDia.value = false
-              resolve(router.go(0))
-            }).catch(() => {
-              EthersService.disconnect()
-              console.error("Invaild login")
-              reject()
-            })
-          }).catch(() => {
-            EthersService.disconnect()
-            console.error("Wrong chain")
-            reject()
-          })
-        } else {
-          console.log('456')
-          EthersService.disconnect()
-          console.error("No account")
-          reject()
-        }
-      }).catch((err: any) => {
-        console.log('456')
-        EthersService.disconnect()
-        reject(err)
-      })
-    } else {
-      console.log("No Web3 Plugin")
-      console.log('456')
-      EthersService.disconnect()
-      reject()
-    }
-  })
-}
+onBeforeMount(async () => {
+  await userStore.tryAutoLogin()
+})
 
-validMetamaskCheck()
-EthersService.switchNetwork()
 </script>
 
 <style>       hr {
@@ -217,7 +169,7 @@ EthersService.switchNetwork()
       </v-list>
     </v-menu>
 
-    <div class="ml-5 mr-7" v-if="!isWalletConnected">
+    <div class="ml-5 mr-7" v-if="!userStore.isLogin">
       <v-btn color="secondary" size="large" rounded="lg" variant="elevated">
         <h3>{{ $t("Connect-Wallet") }}</h3>
         <v-dialog v-model="connectwalletDia" activator="parent" style="width: 400px;">
@@ -331,7 +283,7 @@ EthersService.switchNetwork()
     <!-- ---------------------------------------------- -->
     <!-- User Profile -->
     <!-- ---------------------------------------------- -->
-    <v-menu anchor="bottom end" origin="auto" min-width="300" v-if="isWalletConnected">
+    <v-menu v-else anchor="bottom end" origin="auto" min-width="300">
       <template v-slot:activator="{ props }">
         <v-btn v-bind="props" class="pa-0 px-1" elevation="0" color="transparent" plain :ripple="false">
           <v-avatar size="35">
@@ -344,8 +296,8 @@ EthersService.switchNetwork()
         <div class="d-flex align-center">
           <img :src="getUserAvatar(60)" alt="Avatar" class="rounded-circle" width="60" />
           <div class="ml-4">
-            <h4 class="font-weight-medium fs-18">{{ userStore.getNickname() }}</h4>
-            <span class="subtitle-2 font-weight-light">{{ EthersService.shortWalletAddress(undefined) }}</span>
+            <h4 class="font-weight-medium fs-18">{{ userStore.displayName }}</h4>
+            <span class="subtitle-2 font-weight-light">{{ userStore.shortWallet }}</span>
             <!-- <div class="d-flex">
               <span class="subtitle-2 font-weight-light"><small>Level 2</small></span>
             </div> -->

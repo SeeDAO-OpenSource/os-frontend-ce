@@ -1,5 +1,5 @@
-import { Configuration } from 'daoly-sdk-ce-lx'
+import { Configuration } from 'daoly-client-sdk'
 
 export const config = new Configuration({
-  basePath: "http://localhost:3000"
+  basePath: import.meta.env.VITE_API_BASE_PATH,
 })

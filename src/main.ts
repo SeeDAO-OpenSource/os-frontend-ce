@@ -10,9 +10,10 @@ import VueApexCharts from "vue3-apexcharts"
 import InstantSearch from "vue-instantsearch/vue3/es"
 import VCalendar from "v-calendar"
 import VueFeather from "vue-feather"
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 import i18n from "./plugins/i18n"
+import { useApi } from "./api/axios"
+
+useApi()
 
 const app = createApp(App)
 app.component(VueFeather.name, VueFeather)
@@ -22,6 +23,5 @@ app.use(createPinia())
 app.use(VCalendar, {})
 app.use(VueApexCharts)
 app.use(router)
-app.use(VueAxios, axios)
 app.use(i18n)
 app.use(vuetify).mount("#app")
