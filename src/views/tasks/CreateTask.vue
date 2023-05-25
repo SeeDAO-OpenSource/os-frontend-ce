@@ -1,50 +1,76 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Configuration, TasksApi, TaskCreateInput } from 'daoly-client-sdk';
+import serverConfig from '@/config/server.ts';
 
-const show1 = ref(false);
-const checkbox = ref("");
-const password = ref("");
-const rules = ref({
-  required: (value: string) => !!value || "Required.",
-  min: (v: string) => v.length >= 8 || "Min 8 characters",
-  emailMatch: () => "The email and password you entered don't match",
+const task = ref<TaskCreateInput>({
+  name: '',
+  description: '',
+  type: '',
+  status: '',
+  assigned_to: '',
+  subtasks: '',
+  creator: '',
+  reviewer: '',
+  evaluation: '',
+  links: '',
+  rewards: '',
 });
 
+const createTask = async (event: Event) => {
+  event.preventDefault();
+
+  const tasksApi = new TasksApi(new Configuration({ 
+    basePath: serverConfig.axios.baseURL 
+  }));
+
+  try {
+    const response = await tasksApi.taskControllerCreate({
+      ...task.value,
+      subtasks: task.value.subtasks.split(',').map(item => item.trim()),
+      links: task.value.links.split(',').map(item => item.trim()),
+      rewards: task.value.rewards.split(',').map(item => item.trim()),
+    });
+
+    alert('Task created successfully!');
+    
+    task.value = {
+      name: '',
+      description: '',
+      type: '',
+      status: '',
+      assigned_to: '',
+      subtasks: '',
+      creator: '',
+      reviewer: '',
+      evaluation: '',
+      links: '',
+      rewards: '',
+    };
+  } catch (error) {
+    console.error('Error creating task:', error);
+  }
+};
 </script>
 
 <template>
-  <v-card class="mb-7">
+  <v-card>
     <v-card-text class="pa-5 border-bottom">
-      <h3 class="title text-h6">General Form</h3>
-      <h6 class="text-subtitle-1 text-grey-darken-1">All with vuetify element attributes</h6>
+      <h3 class="title text-h6">Create a Task</h3>
     </v-card-text>
-    <v-divider></v-divider>
     <v-card-text>
-      <v-text-field
-        label="Email address"
-        filled
-        background-color="transparent"
-        hint="We'll never share your email with anyone else."
-        height="25"
-        persistent-hint
-      ></v-text-field>
-      <v-text-field
-        v-model="password"
-        filled
-        background-color="transparent"
-        class="mt-3"
-        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="[rules.required, rules.min]"
-        :type="show1 ? 'text' : 'password'"
-        name="input-10-1"
-        label="Password"
-        hint="At least 8 characters"
-        counter
-        @click:append="show1 = !show1"
-      ></v-text-field>
-      <v-checkbox v-model="checkbox" hide-details label="Check me Out!" class="mt-0"></v-checkbox>
-      <v-btn color="secondary" class="text-capitalize">Submit</v-btn>
+      <v-text-field label="Name" v-model="task.name" filled></v-text-field>
+      <v-text-field label="Description" v-model="task.description" filled></v-text-field>
+      <v-text-field label="Type" v-model="task.type" filled></v-text-field>
+      <v-text-field label="Status" v-model="task.status" filled></v-text-field>
+      <v-text-field label="Assigned To" v-model="task.assigned_to" filled></v-text-field>
+      <v-text-field label="Creator" v-model="task.creator" filled></v-text-field>
+      <v-text-field label="Reviewer" v-model="task.reviewer" filled></v-text-field>
+      <v-text-field label="Evaluation" v-model="task.evaluation" filled></v-text-field>
+      <v-text-field label="Subtasks" v-model="task.subtasks" filled placeholder="Separate multiple subtasks with a comma"></v-text-field>
+      <v-text-field label="Links" v-model="task.links" filled placeholder="Separate multiple links with a comma"></v-text-field>
+      <v-text-field label="Rewards" v-model="task.rewards" filled placeholder="Separate multiple rewards with a comma"></v-text-field>
+      <v-btn color="secondary" class="text-capitalize" @click="createTask">Create Task</v-btn>
     </v-card-text>
   </v-card>
 </template>
-
