@@ -4,8 +4,9 @@ export default {
     // baseURL: "https://seedao-sendingme.azurewebsites.net"
   },
   axios: {
-    baseURL: "https://seedaoosv16.azurewebsites.net",
+    // baseURL: "https://seedaoosv16.azurewebsites.net",
     // baseURL: "http://localhost:3000",
+    baseURL: "https://os-backend-ce.fly.dev",
     headers: {
       "Content-Type": "application/json"
     }
