@@ -8,7 +8,6 @@ export class UserService {
 
   constructor() {
     this.authApi = new AuthApi(config, undefined, axios)
-
   }
 
   async login() {

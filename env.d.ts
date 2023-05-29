@@ -1,4 +1,5 @@
-/// <reference types="vite/client" />
-declare interface Window{
-    ethereum:any
+
+
+declare interface Window {
+    ethereum: any
 }

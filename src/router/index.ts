@@ -4,6 +4,7 @@ const router = createRouter({
   history: createWebHistory("/"),
   routes: [
     {
+      name: "root",
       path: "/",
       redirect: "/dashboard",
       component: () => import("@/layouts/full/Dashboard.vue"),
@@ -744,7 +745,8 @@ const router = createRouter({
           component: () => import("@/views/authentication/BoxedRegister.vue"),
         },
       ]
-    }, {
+    },
+    {
       path: "/dashboards",
       redirect: "/dashboards/analytical",
       component: () => import("@/layouts/full/FullLayout.vue"),
