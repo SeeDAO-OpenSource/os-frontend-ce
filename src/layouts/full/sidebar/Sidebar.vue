@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ref, watch } from "vue"
+import { onMounted, ref, watch } from "vue"
 import { useCustomizerStore } from "@/stores/customizer"
-import sidebarItems from "./sidebarItem"
 import LogoLight from "../logo/LogoLight.vue"
 import LogoDark from "../logo/LogoDark.vue"
+import { useMenuStore } from "@/stores/menu"
 
 const customizer = useCustomizerStore()
-const sidebarMenu = ref(sidebarItems)
+const sidebarMenu = useMenuStore()
+
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const sidebarMenu = ref(sidebarItems)
         <!-- ---------------------------------------------- -->
         <!---Menu Loop -->
         <!-- ---------------------------------------------- -->
-        <template v-for="(item, i) in sidebarMenu">
+        <template v-for="(item, i) in sidebarMenu.sortedMenus">
           <!-- ---------------------------------------------- -->
           <!---Item Sub Header -->
           <!-- ---------------------------------------------- -->
@@ -58,7 +59,9 @@ const sidebarMenu = ref(sidebarItems)
             <!-- ---------------------------------------------- -->
             <v-list-item v-for="(subitem, i) in item.children" :key="i" :value="subitem.to" :to="subitem.to" rounded="lg"
               class="first-level-item mb-1">
-              <v-list-item-title><p style="padding-left: 2.3em;">{{  $t(subitem.title) }}</p></v-list-item-title>
+              <v-list-item-title>
+                <p style="padding-left: 2.3em;">{{ $t(subitem.title) }}</p>
+              </v-list-item-title>
             </v-list-item>
           </v-list-group>
           <!-- ---------------------------------------------- -->

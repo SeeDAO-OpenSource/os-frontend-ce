@@ -12,16 +12,23 @@ import VCalendar from "v-calendar"
 import VueFeather from "vue-feather"
 import i18n from "./plugins/i18n"
 import { useApi } from "./api/axios"
+import { loadModules, registerModules } from "./modules/module"
 
-useApi()
+initApp()
 
-const app = createApp(App)
-app.component(VueFeather.name, VueFeather)
-app.use(PerfectScrollbar)
-app.use(InstantSearch)
-app.use(createPinia())
-app.use(VCalendar, {})
-app.use(VueApexCharts)
-app.use(router)
-app.use(i18n)
-app.use(vuetify).mount("#app")
+async function initApp() {
+  useApi()
+  const app = createApp(App)
+  app.component(VueFeather.name, VueFeather)
+  app.use(i18n)
+  app.use(PerfectScrollbar)
+  app.use(InstantSearch)
+  app.use(createPinia())
+  app.use(VCalendar, {})
+  app.use(VueApexCharts)
+  await loadModules()
+  await registerModules()
+  app.use(router)
+  app.use(vuetify).mount("#app")
+
+}
