@@ -19,15 +19,15 @@ export class WalletService {
     localStorage.setItem('WallatType', type)
   }
 
-  private createMetaMaskProvider(name: string): WalletProvider {
+  private createMetaMaskProvider(type: WalletType): WalletProvider {
     let p = this.providers.get(WalletType.MetaMask)
     if (!p) {
       const metamaskConfig: WalletConfig = {
-        type: WalletType.MetaMask,
+        type: type,
         chainId: 1,
       }
       p = createProvider(metamaskConfig)
-      this.providers.set(WalletType.MetaMask, p)
+      this.providers.set(type, p)
     }
     return p
   }

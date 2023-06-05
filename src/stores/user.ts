@@ -68,8 +68,8 @@ export const useUserStore = defineStore('user', {
 
   getters: {
     isLogin: (state) => !!state.id && state.id !== "",
-    displayName: (state) => getShortAddress(state.nickName) || getShortAddress(state.wallet) || state.id,
-    shortWallet: (state) => getShortAddress(state.wallet),
+    displayName: (state) => getShortStr(state.nickName) || getShortStr(state.wallet) || state.id,
+    shortWallet: (state) => getShortStr(state.wallet),
   }
 })
 
@@ -78,8 +78,7 @@ export const useUserStore = defineStore('user', {
  * @param {string}
  * @returns {string}
  */
-export function getShortAddress(address: string | undefined) {
-  // eslint-disable-next-line no-nested-ternary
-  return address ? (address.length > 10 ? `${address.slice(0, 6)}...${address.slice(address.length - 4, address.length)}` : address) : ''
+export function getShortStr(s: string | undefined) {
+  return s ? (s.length > 10 ? `${s.slice(0, 6)}...${s.slice(s.length - 4, s.length)}` : s) : ''
 }
 
