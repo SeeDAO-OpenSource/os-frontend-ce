@@ -21,26 +21,26 @@ export const sidebarItem: Menu[] = [
   //   icon: "tablet",
   //   to: "/terminal",
   // },
-  // {
-  //   group: "/tasks/",
-  //   model: false,
-  //   icon: "check-circle",
-  //   title: "Tasks",
-  //   children: [
-  //     {
-  //       title: "My-Tasks",
-  //       to: "/tasks/my",
-  //     },
-  //     {
-  //       title: "Task-List",
-  //       to: "/tasks/",
-  //     },
-  //     {
-  //       title: "Create-Task",
-  //       to: "/tasks/create",
-  //     }
-  //   ]
-  // },
+  {
+    group: "/tasks/",
+    model: false,
+    icon: "check-circle",
+    title: "Tasks",
+    children: [
+      {
+        title: "My-Tasks",
+        to: "/tasks/my",
+      },
+      {
+        title: "Task-List",
+        to: "/tasks/",
+      },
+      {
+        title: "Create-Task",
+        to: "/tasks/create",
+      }
+    ]
+  },
   {
     group: "/scores/",
     model: false,
