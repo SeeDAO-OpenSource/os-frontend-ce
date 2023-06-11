@@ -21,26 +21,7 @@ export const sidebarItem: Menu[] = [
   //   icon: "tablet",
   //   to: "/terminal",
   // },
-  {
-    group: "/tasks/",
-    model: false,
-    icon: "check-circle",
-    title: "Tasks",
-    children: [
-      {
-        title: "My-Tasks",
-        to: "/tasks/my",
-      },
-      {
-        title: "Task-List",
-        to: "/tasks/",
-      },
-      {
-        title: "Create-Task",
-        to: "/tasks/create",
-      }
-    ]
-  },
+
   {
     group: "/scores/",
     model: false,
@@ -61,6 +42,58 @@ export const sidebarItem: Menu[] = [
       }
     ]
   },
+  {
+    group: "/tasks/",
+    model: false,
+    icon: "check-circle",
+    title: "Tasks",
+    children: [
+      // {
+      //   title: "My-Tasks",
+      //   to: "/tasks/my",
+      // },
+      {
+        title: "Task-List",
+        to: "/tasks/",
+      },
+      {
+        title: "Create-Task",
+        to: "/tasks/create",
+      }
+    ]
+  },
+  {
+    group: "/projects/",
+    model: false,
+    icon: "award",
+    title: "Projects",
+    children: [
+      {
+        title: "GPT-Colearning",
+        to: "/projects/gpt-colearning",
+      }
+    ]
+  },
+  // {
+  //   group: "/profile/",
+  //   model: false,
+  //   icon: "check-circle",
+  //   title: "Profile",
+  //   children: [
+  //     {
+  //       title: "User-List",
+  //       to: "/tasks/",
+  //     },
+  //     {
+  //       title: "MySettings",
+  //       to: "/settings",
+  //     },
+  //     {
+  //       title: "Inbox",
+  //       to: "/inbox",
+  //     }
+  //   ]
+  // },
   // {
   //   group: "/events/",
   //   model: false,

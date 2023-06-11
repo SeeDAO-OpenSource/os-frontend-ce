@@ -45,6 +45,11 @@ const router = createRouter({
           component: () => import("@/views/scores/MyScores.vue"),
         },
         {
+          name: "LowGptProject",
+          path: "/projects/gpt-colearning",
+          component: () => import("@/views/projects/LowGptProject.vue"),
+        },
+        {
           name: "ScoresSearch",
           path: "/scores/search",
           component: () => import("@/views/scores/ScoresSearch.vue"),
